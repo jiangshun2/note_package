@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-探讨构造方法与实例化-20260205222819" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/02/05/%E6%8E%A2%E8%AE%A8%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E4%B8%8E%E5%AE%9E%E4%BE%8B%E5%8C%96-20260205222819/" class="article-date">
+  <time class="dt-published" datetime="2026-02-04T16:00:00.000Z" itemprop="datePublished">2026-02-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/02/05/%E6%8E%A2%E8%AE%A8%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E4%B8%8E%E5%AE%9E%E4%BE%8B%E5%8C%96-20260205222819/">Java static 关键字 - 学习总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-static-关键字-学习总结"><a href="#Java-static-关键字-学习总结" class="headerlink" title="Java static 关键字 - 学习总结"></a>Java static 关键字 - 学习总结</h1><p><strong>学习日期</strong>：2026-02-05<br><strong>学习时长</strong>：约 30 分钟<br><strong>学习方法</strong>：费曼学习法（问答互动）</p>
+<hr>
+<h2 id="一、今日学习内容汇总"><a href="#一、今日学习内容汇总" class="headerlink" title="一、今日学习内容汇总"></a>一、今日学习内容汇总</h2><h3 id="1-static-关键字的修饰范围"><a href="#1-static-关键字的修饰范围" class="headerlink" title="1. static 关键字的修饰范围"></a>1. static 关键字的修饰范围</h3><p><strong>知识点</strong>：</p>
+<ul>
+<li><strong>静态变量</strong>（static variables）：也叫类变量，属于类本身，而不是某个对象实例</li>
+<li><strong>静态方法</strong>（static methods）：属于类，可以直接通过类名调用</li>
+<li><strong>静态代码块</strong>（static blocks）：用于类加载时执行一次的初始化操作</li>
+<li><strong>静态内部类</strong>（static nested classes）：嵌套在另一个类中的静态类</li>
+<li><strong>静态导入</strong>（static import）：如 <code>import static java.lang.Math.*;</code></li>
+</ul>
+<p><strong>实际应用场景</strong>：</p>
+<ul>
+<li>✅ 静态变量：用于共享状态（如统计对象创建次数）</li>
+<li>✅ 静态方法：工具方法（如 <code>Math.random()</code>）</li>
+<li>✅ 静态代码块：初始化静态资源、加载驱动</li>
+<li>✅ 静态内部类：逻辑上属于外部类但不依赖实例</li>
+</ul>
+<h3 id="2-static-方法不能访问非静态成员的原因"><a href="#2-static-方法不能访问非静态成员的原因" class="headerlink" title="2. static 方法不能访问非静态成员的原因"></a>2. static 方法不能访问非静态成员的原因</h3><p><strong>知识点</strong>：</p>
+<ul>
+<li>非 static 的成员变量和方法属于某个具体的对象实例，只有在创建对象（new）之后才存在</li>
+<li>static 方法或变量属于类本身，在类被加载到 JVM 时就存在了，不需要创建对象</li>
+<li>当 static 方法被调用时，可能还没有任何该类的对象被创建，因此无法访问非静态成员</li>
+</ul>
+<p><strong>实际应用场景</strong>：</p>
+<ul>
+<li>✅ 避免在静态方法中直接访问实例变量</li>
+<li>✅ 如需访问实例成员，需要先创建对象实例</li>
+</ul>
+<h3 id="3-static-变量的应用：统计对象创建次数"><a href="#3-static-变量的应用：统计对象创建次数" class="headerlink" title="3. static 变量的应用：统计对象创建次数"></a>3. static 变量的应用：统计对象创建次数</h3><p><strong>知识点</strong>：</p>
+<ul>
+<li>使用 static 变量作为计数器，因为它是类级别的，所有对象共享</li>
+<li>在构造方法中对 static 变量进行自增</li>
+<li>提供静态方法获取当前计数</li>
+</ul>
+<p><strong>示例代码</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    Demo() &#123;</span><br><span class="line">        num++;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">getCount</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;当前对象数量是：&quot;</span> + num);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Demo</span> <span class="variable">demo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Demo</span>();</span><br><span class="line">        <span class="type">Demo</span> <span class="variable">demo1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Demo</span>();</span><br><span class="line">        getCount(); <span class="comment">// 输出：当前对象数量是：2</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>实际应用场景</strong>：</p>
+<ul>
+<li>✅ 统计系统中某个类的实例数量</li>
+<li>✅ 实现单例模式的计数器</li>
+</ul>
+<h3 id="4-static-代码块的执行时机"><a href="#4-static-代码块的执行时机" class="headerlink" title="4. static 代码块的执行时机"></a>4. static 代码块的执行时机</h3><p><strong>知识点</strong>：</p>
+<ul>
+<li>静态代码块在<strong>类被加载到 JVM 时</strong>执行，而不是在创建对象时</li>
+<li>只执行一次，即使没有创建任何对象</li>
+<li>早于 main 方法和构造方法执行</li>
+</ul>
+<p><strong>示例代码</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Demo</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;静态代码块执行了！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Demo</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;构造方法执行了！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;开始创建对象...&quot;</span>);</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Demo</span>();</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Demo</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出：</span></span><br><span class="line"><span class="comment">// 静态代码块执行了！</span></span><br><span class="line"><span class="comment">// 开始创建对象...</span></span><br><span class="line"><span class="comment">// 构造方法执行了！</span></span><br><span class="line"><span class="comment">// 构造方法执行了！</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>实际应用场景</strong>：</p>
+<ul>
+<li>✅ 初始化静态资源（如加载配置文件）</li>
+<li>✅ 加载数据库驱动</li>
+<li>✅ 设置全局配置</li>
+</ul>
+<h3 id="5-main-方法必须是-static-的原因"><a href="#5-main-方法必须是-static-的原因" class="headerlink" title="5. main 方法必须是 static 的原因"></a>5. main 方法必须是 static 的原因</h3><p><strong>知识点</strong>：</p>
+<ul>
+<li>JVM 在启动程序时，并没有该类的任何实例对象</li>
+<li>当运行 <code>java MyClass</code> 时，JVM 会加载 MyClass 类并直接调用 <code>public static void main(String[] args)</code> 方法</li>
+<li>如果 main 方法不是 static 的，JVM 无法知道该用哪个对象来调用它</li>
+</ul>
+<p><strong>实际应用场景</strong>：</p>
+<ul>
+<li>✅ 所有 Java 应用程序的入口点</li>
+</ul>
+<h3 id="6-代码块的执行顺序"><a href="#6-代码块的执行顺序" class="headerlink" title="6. 代码块的执行顺序"></a>6. 代码块的执行顺序</h3><p><strong>知识点</strong>：</p>
+<ul>
+<li><strong>静态代码块</strong>：类加载时执行，只执行一次</li>
+<li><strong>构造代码块</strong>（{}）：每次创建对象时执行，在构造方法之前</li>
+<li><strong>构造方法</strong>：每次创建对象时执行，在构造块之后</li>
+</ul>
+<p><strong>执行顺序</strong>：静态代码块 &gt; 构造块 &gt; 构造方法</p>
+<p><strong>示例代码</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;静态块&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;构造块&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">A</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;构造方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">A</span>();</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">A</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出：</span></span><br><span class="line"><span class="comment">// 静态块</span></span><br><span class="line"><span class="comment">// 构造块</span></span><br><span class="line"><span class="comment">// 构造方法</span></span><br><span class="line"><span class="comment">// 构造块</span></span><br><span class="line"><span class="comment">// 构造方法</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>实际应用场景</strong>：</p>
+<ul>
+<li>✅ 理解 Java 类的初始化过程</li>
+<li>✅ 合理安排代码块的执行顺序</li>
+</ul>
+<h2 id="二、今日记忆口诀汇总"><a href="#二、今日记忆口诀汇总" class="headerlink" title="二、今日记忆口诀汇总"></a>二、今日记忆口诀汇总</h2><ol>
+<li><p><strong>static 修饰范围</strong>：</p>
+<blockquote>
+<p><strong>static 修饰五大件，变量方法代码块</strong><br><strong>内部类和静态导，类级共享是关键</strong></p>
+</blockquote>
+</li>
+<li><p><strong>static 方法访问限制</strong>：</p>
+<blockquote>
+<p><strong>静态方法无实例，非静成员不能用</strong><br><strong>类加载时就存在，对象实例还未生</strong></p>
+</blockquote>
+</li>
+<li><p><strong>static 变量应用</strong>：</p>
+<blockquote>
+<p><strong>静态变量共享用，对象计数最典型</strong><br><strong>构造方法自增一，类名调用取统计</strong></p>
+</blockquote>
+</li>
+<li><p><strong>static 代码块</strong>：</p>
+<blockquote>
+<p><strong>静态代码块加载时，只执行一次记心间</strong><br><strong>早于 main 和构造，初始化资源最适合</strong></p>
+</blockquote>
+</li>
+<li><p><strong>main 方法必须 static</strong>：</p>
+<blockquote>
+<p><strong>main 方法是入口，JVM 调用无对象</strong><br><strong>static 关键字不可少，否则启动就报错</strong></p>
+</blockquote>
+</li>
+<li><p><strong>代码块执行顺序</strong>：</p>
+<blockquote>
+<p><strong>静态块先执行，构造块在构造前</strong><br><strong>静态只执行一次，每次 new 都执行构造块</strong></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="三、学习时长统计"><a href="#三、学习时长统计" class="headerlink" title="三、学习时长统计"></a>三、学习时长统计</h2><ul>
+<li><strong>开始时间</strong>：2026-02-05 22:28</li>
+<li><strong>结束时间</strong>：2026-02-05 22:58</li>
+<li><strong>总时长</strong>：约 30 分钟</li>
+</ul>
+<h2 id="四、明日学习计划"><a href="#四、明日学习计划" class="headerlink" title="四、明日学习计划"></a>四、明日学习计划</h2><h3 id="建议复习内容"><a href="#建议复习内容" class="headerlink" title="建议复习内容"></a>建议复习内容</h3><ol>
+<li>复习今日学习的 static 关键字知识点，重点记忆口诀</li>
+<li>练习编写代码，使用 static 变量统计对象创建次数</li>
+<li>重点复习代码块的执行顺序</li>
+</ol>
+<h3 id="建议学习内容"><a href="#建议学习内容" class="headerlink" title="建议学习内容"></a>建议学习内容</h3><ol>
+<li><strong>Java 集合框架</strong>：List、Set、Map 的区别和使用</li>
+<li><strong>泛型</strong>：泛型的使用、通配符、类型擦除</li>
+<li><strong>Java 8 新特性</strong>：Lambda 表达式、Stream API</li>
+</ol>
+<h3 id="需要补充的知识点"><a href="#需要补充的知识点" class="headerlink" title="需要补充的知识点"></a>需要补充的知识点</h3><ol>
+<li><strong>静态内部类与非静态内部类的区别</strong></li>
+<li><strong>静态导入的使用场景和注意事项</strong></li>
+<li><strong>static 与 final 结合使用</strong></li>
+<li><strong>静态方法与实例方法的性能对比</strong></li>
+</ol>
+<h2 id="五、学习心得"><a href="#五、学习心得" class="headerlink" title="五、学习心得"></a>五、学习心得</h2><p>通过今天的学习，我对 Java 中 static 关键字有了更深入的理解。以前只知道 static 可以修饰变量和方法，现在清楚了它还可以修饰代码块、内部类和静态导入。特别是 static 方法不能访问非静态成员的原因、static 代码块的执行时机以及代码块的执行顺序，这些都是实际开发中容易混淆的地方。</p>
+<p>费曼学习法的问答方式让我能够主动思考，而不是被动接受知识。虽然有些问题一开始回答不够完整，甚至有错误，但通过老师的详细讲解和纠正，我能够更好地理解和记忆这些知识点。记忆口诀的总结也让我能够快速回顾和巩固所学内容。</p>
+<p>明天计划学习 Java 集合框架，继续深入理解 Java 的核心特性。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/02/05/%E6%8E%A2%E8%AE%A8%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95%E4%B8%8E%E5%AE%9E%E4%BE%8B%E5%8C%96-20260205222819/" data-id="cuidOvs5jxGNQoMgOpJkqilC9" data-title="Java static 关键字 - 学习总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Map%E5%AE%B6%E6%97%8F-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Map家族学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Stream%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Stream流学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java 方法引用学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/30/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Java网络编程</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/25/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Java线程池工作原理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

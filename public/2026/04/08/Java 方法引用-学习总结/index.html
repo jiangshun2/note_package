@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Java 方法引用学习总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Java 方法引用学习总结一、今日学习内容汇总 方法引用的定义和语法  定义：复用已有方法作为函数式接口的实现 语法格式：:: 双冒号 类型：静态方法引用、实例方法引用、构造方法引用、数组构造方法引用   方法引用的使用条件  函数式接口：必须是只有一个抽象方法的接口 方法签名匹配：参数类型、个数和返回类型一致 上下文推断：编译器能从上下文推断类型   方法引用的实际应用场景  集合操作：排序、遍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 方法引用学习总结">
+<meta property="og:url" content="http://example.com/2026/04/08/Java%20%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java 方法引用学习总结一、今日学习内容汇总 方法引用的定义和语法  定义：复用已有方法作为函数式接口的实现 语法格式：:: 双冒号 类型：静态方法引用、实例方法引用、构造方法引用、数组构造方法引用   方法引用的使用条件  函数式接口：必须是只有一个抽象方法的接口 方法签名匹配：参数类型、个数和返回类型一致 上下文推断：编译器能从上下文推断类型   方法引用的实际应用场景  集合操作：排序、遍">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-04-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-08T09:59:40.823Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="基础">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Java 方法引用-学习总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/04/08/Java%20%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2026-04-07T16:00:00.000Z" itemprop="datePublished">2026-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Java 方法引用学习总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-方法引用学习总结"><a href="#Java-方法引用学习总结" class="headerlink" title="Java 方法引用学习总结"></a>Java 方法引用学习总结</h1><h2 id="一、今日学习内容汇总"><a href="#一、今日学习内容汇总" class="headerlink" title="一、今日学习内容汇总"></a>一、今日学习内容汇总</h2><ol>
+<li><p><strong>方法引用的定义和语法</strong></p>
+<ul>
+<li>定义：复用已有方法作为函数式接口的实现</li>
+<li>语法格式：<code>::</code> 双冒号</li>
+<li>类型：静态方法引用、实例方法引用、构造方法引用、数组构造方法引用</li>
+</ul>
+</li>
+<li><p><strong>方法引用的使用条件</strong></p>
+<ul>
+<li>函数式接口：必须是只有一个抽象方法的接口</li>
+<li>方法签名匹配：参数类型、个数和返回类型一致</li>
+<li>上下文推断：编译器能从上下文推断类型</li>
+</ul>
+</li>
+<li><p><strong>方法引用的实际应用场景</strong></p>
+<ul>
+<li>集合操作：排序、遍历</li>
+<li>Stream流：map、filter、forEach、collect</li>
+<li>函数式接口：作为Function、Consumer、Supplier等的实现</li>
+</ul>
+</li>
+<li><p><strong>方法引用与Lambda的关系</strong></p>
+<ul>
+<li>方法引用是Lambda的语法糖</li>
+<li>当Lambda体只是调用一个已有的方法时，使用方法引用更简洁</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、今日记忆口诀汇总"><a href="#二、今日记忆口诀汇总" class="headerlink" title="二、今日记忆口诀汇总"></a>二、今日记忆口诀汇总</h2><ol>
+<li><p><strong>方法引用基本概念</strong>：方法引用双冒号，静态实例和构造；参数列表要匹配，函数接口是前提。</p>
+</li>
+<li><p><strong>方法引用使用条件</strong>：函数接口是前提，方法签名要匹配；参数个数和类型，返回类型都得对；上下文要明确，编译器能推断。</p>
+</li>
+<li><p><strong>方法引用应用场景</strong>：集合操作要排序，方法引用很方便；Stream流中常用到，map forEach最常见；函数接口作参数，方法引用更简洁。</p>
+</li>
+<li><p><strong>方法引用类型</strong>：静态方法类名引，实例方法对象引；构造方法用new，数组构造类型引。</p>
+</li>
+</ol>
+<h2 id="三、学习时长统计"><a href="#三、学习时长统计" class="headerlink" title="三、学习时长统计"></a>三、学习时长统计</h2><p>本次学习时长：约1.5小时</p>
+<h2 id="四、明日学习计划"><a href="#四、明日学习计划" class="headerlink" title="四、明日学习计划"></a>四、明日学习计划</h2><ol>
+<li><p><strong>复习任务</strong>：</p>
+<ul>
+<li>重读今日学习内容，重点掌握方法引用的四种类型和使用条件</li>
+<li>尝试口头复述所有记忆口诀，确保熟练掌握</li>
+</ul>
+</li>
+<li><p><strong>新学任务</strong>：</p>
+<ul>
+<li>学习Optional类及其用法（解决空指针问题）</li>
+<li>探索Java 8的其他新特性（默认方法、静态方法）</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、学习心得"><a href="#五、学习心得" class="headerlink" title="五、学习心得"></a>五、学习心得</h2><p>通过费曼学习法的问答模式，我对方法引用的理解从表层深入到了实际应用。特别是在方法引用的四种类型、使用条件和实际应用场景方面，通过具体代码示例，我对这些知识点的掌握更加牢固。</p>
+<p>方法引用是Java 8引入的语法糖，它让代码更加简洁、易读。理解方法引用的使用条件（函数式接口、方法签名匹配、上下文推断），能够帮助我在实际开发中正确使用方法引用，提高代码质量。</p>
+<p>方法引用在Stream流操作中尤为常用，它可以让Stream代码更加简洁、清晰。结合Lambda表达式，方法引用成为了Java 8函数式编程的重要工具。</p>
+<p>这种”问-答-纠错-深化”的学习方法非常有效，能够暴露自己的认知盲区，通过纠正错误来加深理解。我将继续使用这种方法来学习其他Java 8新特性和函数式编程的知识点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/04/08/Java%20%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="cuid6NEXVePCV3fBkWFpoe1mu" data-title="Java 方法引用学习总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/04/08/Java%20Stream%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java Stream流学习总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/03/30/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java网络编程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Map%E5%AE%B6%E6%97%8F-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Map家族学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Stream%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Stream流学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java 方法引用学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/30/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Java网络编程</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/25/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Java线程池工作原理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

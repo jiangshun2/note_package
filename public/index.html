@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Java Map家族-学习总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/04/08/Java%20Map%E5%AE%B6%E6%97%8F-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2026-04-07T16:00:00.000Z" itemprop="datePublished">2026-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/04/08/Java%20Map%E5%AE%B6%E6%97%8F-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Map家族学习总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-Map家族学习总结"><a href="#Java-Map家族学习总结" class="headerlink" title="Java Map家族学习总结"></a>Java Map家族学习总结</h1><h2 id="一、今日学习内容汇总"><a href="#一、今日学习内容汇总" class="headerlink" title="一、今日学习内容汇总"></a>一、今日学习内容汇总</h2><ol>
+<li><p><strong>Map接口与Collection接口的区别</strong></p>
+<ul>
+<li>数据结构本质：Map存储键值对（K-V），Collection存储单个元素</li>
+<li>使用场景：Map用于查找，Collection用于存储</li>
+<li>设计哲学：Map不继承Collection（方法语义不兼容）</li>
+</ul>
+</li>
+<li><p><strong>HashMap、LinkedHashMap、TreeMap的区别</strong></p>
+<ul>
+<li>HashMap：哈希表，无序，性能最高（O(1)）</li>
+<li>LinkedHashMap：哈希表+双向链表，保持插入&#x2F;访问顺序，性能较高（O(1)）</li>
+<li>TreeMap：红黑树，按键排序，性能中等（O(log n)）</li>
+</ul>
+</li>
+<li><p><strong>HashMap的扩容机制</strong></p>
+<ul>
+<li>初始容量：16</li>
+<li>负载因子：0.75</li>
+<li>扩容阈值：16 × 0.75 &#x3D; 12</li>
+<li>扩容倍数：2倍</li>
+<li>本质就是：创建一个容量更大的，新的数组，把原数组的 所有元素计算哈希值后迁移到新数组</li>
+</ul>
+</li>
+<li><p><strong>HashMap解决哈希冲突的方法</strong></p>
+<ul>
+<li>链地址法（拉链法）：冲突元素挂在链表上</li>
+<li>红黑树转换：链表长度≥8转为红黑树，提升查询效率</li>
+</ul>
+</li>
+<li><p><strong>HashMap线程安全问题</strong></p>
+<ul>
+<li>HashMap非线程安全（数据丢失、死循环、数据不一致）</li>
+<li>ConcurrentHashMap：Java 7分段锁，Java 8 CAS+synchronized（推荐）</li>
+<li>Collections.synchronizedMap：所有方法加synchronized（不推荐）</li>
+</ul>
+</li>
+<li><p><strong>LinkedHashMap实现LRU缓存</strong></p>
+<ul>
+<li>访问顺序模式：构造时accessOrder&#x3D;true</li>
+<li>removeEldestEntry方法：重写该方法，超限删除最老元素</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、今日记忆口诀汇总"><a href="#二、今日记忆口诀汇总" class="headerlink" title="二、今日记忆口诀汇总"></a>二、今日记忆口诀汇总</h2><ol>
+<li><strong>Map与Collection</strong>：Map双列存键值，Collection单列存元素；设计理念不兼容，方法语义有差异。</li>
+<li><strong>三种Map对比</strong>：HashMap最快无序，LinkedHashMap有序较慢，TreeMap排序中等；底层实现各不同，使用场景要选对。</li>
+<li><strong>HashMap扩容</strong>：初始16负载0.75，阈值12触发扩容；容量翻倍重计算，减少冲突提性能。</li>
+<li><strong>哈希冲突解决</strong>：拉链法挂冲突链，红黑树优化长链；8转6回树链表，查询效率大提升。</li>
+<li><strong>线程安全</strong>：HashMap非线程安全，并发场景用Concurrent；Java7分段锁，Java8CAS更高效。</li>
+<li><strong>LRU缓存</strong>：LinkedHashMap实现LRU，accessOrder要设true；removeEldestEntry重写，超限删除最老元素。</li>
+</ol>
+<h2 id="三、学习时长统计"><a href="#三、学习时长统计" class="headerlink" title="三、学习时长统计"></a>三、学习时长统计</h2><p>本次学习时长：约1.5小时</p>
+<h2 id="四、明日学习计划"><a href="#四、明日学习计划" class="headerlink" title="四、明日学习计划"></a>四、明日学习计划</h2><ol>
+<li><p><strong>复习任务</strong>：</p>
+<ul>
+<li>重读今日学习内容，重点掌握HashMap扩容机制和ConcurrentHashMap原理</li>
+<li>尝试口头复述所有记忆口诀，确保熟练掌握</li>
+</ul>
+</li>
+<li><p><strong>新学任务</strong>：</p>
+<ul>
+<li>学习Set接口及其实现类（HashSet、LinkedHashSet、TreeSet）</li>
+<li>探索Queue接口及其实现类（LinkedList、PriorityQueue）</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、学习心得"><a href="#五、学习心得" class="headerlink" title="五、学习心得"></a>五、学习心得</h2><p>通过费曼学习法的问答模式，我对Map家族的理解从表层深入到了底层原理。特别是在HashMap扩容机制、哈希冲突解决、线程安全问题以及LRU缓存实现方面，通过暴露错误和纠正，我对这些知识点的掌握更加牢固。</p>
+<p>Map家族在实际开发中应用广泛，HashMap用于高频查找，LinkedHashMap用于需要保持顺序的场景（如LRU缓存），TreeMap用于需要排序的场景（如排行榜）。理解它们的底层实现和性能特点，能够帮助我在实际开发中做出更合理的选择。</p>
+<p>ConcurrentHashMap的线程安全实现机制（Java 7分段锁 vs Java 8 CAS+synchronized）是面试高频考点，需要重点掌握。LinkedHashMap实现LRU缓存也是面试必考题，通过重写removeEldestEntry方法可以轻松实现。</p>
+<p>这种”问-答-纠错-深化”的学习方法非常有效，能够暴露自己的认知盲区，通过纠正错误来加深理解。我将继续使用这种方法来学习其他Java集合框架的知识点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/04/08/Java%20Map%E5%AE%B6%E6%97%8F-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="cuidjhRNaA327fJjb2e3jrb_Z" data-title="Java Map家族学习总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java Stream流-学习总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/04/08/Java%20Stream%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2026-04-07T16:00:00.000Z" itemprop="datePublished">2026-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/04/08/Java%20Stream%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Stream流学习总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-Stream流学习总结"><a href="#Java-Stream流学习总结" class="headerlink" title="Java Stream流学习总结"></a>Java Stream流学习总结</h1><h2 id="一、今日学习内容汇总"><a href="#一、今日学习内容汇总" class="headerlink" title="一、今日学习内容汇总"></a>一、今日学习内容汇总</h2><ol>
+<li><p><strong>Stream流与Collection的区别</strong></p>
+<ul>
+<li>数据处理方式：Stream是数据处理管道，Collection是数据存储容器</li>
+<li>存储特性：Stream不存储数据，Collection存储数据</li>
+<li>使用场景：Stream用于数据处理，Collection用于数据存储</li>
+</ul>
+</li>
+<li><p><strong>Stream的中间操作和终端操作</strong></p>
+<ul>
+<li>中间操作：返回Stream，懒加载，可链式调用（filter、map、sorted、distinct）</li>
+<li>终端操作：返回具体结果，立即执行，不可链式调用（collect、forEach、count、reduce）</li>
+</ul>
+</li>
+<li><p><strong>Stream的常用中间操作</strong></p>
+<ul>
+<li>filter()：筛选元素</li>
+<li>map()：映射转换</li>
+<li>sorted()：排序</li>
+<li>distinct()：去重</li>
+</ul>
+</li>
+<li><p><strong>Stream的常用终端操作</strong></p>
+<ul>
+<li>collect()：收集到集合</li>
+<li>forEach()：遍历执行</li>
+<li>count()：统计个数</li>
+<li>reduce()：归约聚合</li>
+</ul>
+</li>
+<li><p><strong>Stream的并行处理</strong></p>
+<ul>
+<li>parallelStream()：创建并行流，多线程处理</li>
+<li>线程安全：并行流不是线程安全的，collect是安全的，forEach修改共享数据要小心</li>
+<li>性能优化：大数据量（&gt;10000）和计算密集型操作适合并行，小数据量和IO密集型不适合</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、今日记忆口诀汇总"><a href="#二、今日记忆口诀汇总" class="headerlink" title="二、今日记忆口诀汇总"></a>二、今日记忆口诀汇总</h2><ol>
+<li><p><strong>Stream与Collection</strong>：Stream流处理数据，Collection存储数据；Stream不存数据，懒加载是特性。</p>
+</li>
+<li><p><strong>中间vs终端</strong>：中间操作返回Stream，懒加载不执行；终端操作返回结果，立即执行不链式。</p>
+</li>
+<li><p><strong>中间操作</strong>：filter筛选按条件，map映射转类型；sorted排序可自定义，distinct去重很简单。</p>
+</li>
+<li><p><strong>终端操作</strong>：collect收集到集合，forEach遍历执行操作；count统计元素数，reduce归约聚合结果。</p>
+</li>
+<li><p><strong>并行流</strong>：parallelStream并行流，多线程处理数据；大数据量才使用，小数据反而更慢；collect线程安全，forEach修改要小心。</p>
+</li>
+</ol>
+<h2 id="三、学习时长统计"><a href="#三、学习时长统计" class="headerlink" title="三、学习时长统计"></a>三、学习时长统计</h2><p>本次学习时长：约2小时</p>
+<h2 id="四、明日学习计划"><a href="#四、明日学习计划" class="headerlink" title="四、明日学习计划"></a>四、明日学习计划</h2><ol>
+<li><p><strong>复习任务</strong>：</p>
+<ul>
+<li>重读今日学习内容，重点掌握Stream的并行处理和线程安全问题</li>
+<li>尝试口头复述所有记忆口诀，确保熟练掌握</li>
+</ul>
+</li>
+<li><p><strong>新学任务</strong>：</p>
+<ul>
+<li>学习Optional类及其用法（解决空指针问题）</li>
+<li>探索Java 8的新特性（Lambda表达式进阶、方法引用）</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、学习心得"><a href="#五、学习心得" class="headerlink" title="五、学习心得"></a>五、学习心得</h2><p>通过费曼学习法的问答模式，我对Stream流的理解从表层深入到了底层原理。特别是在中间操作与终端操作的区别、常用操作的具体用法、并行处理的线程安全问题和性能优化方面，通过暴露错误和纠正，我对这些知识点的掌握更加牢固。</p>
+<p>Stream流是Java 8引入的函数式编程特性，它提供了一种声明式、链式调用的数据处理方式，让代码更加简洁、易读。理解Stream的懒加载特性、中间操作与终端操作的区别，能够帮助我更好地使用Stream进行数据处理。</p>
+<p>并行流（parallelStream）是Stream的高级特性，它利用多核CPU的优势，可以显著提升大数据量处理性能。但需要注意线程安全问题，collect是线程安全的，但forEach修改共享数据时需要特别小心。并行流适合大数据量和计算密集型操作，小数据量和IO密集型操作反而更慢。</p>
+<p>这种”问-答-纠错-深化”的学习方法非常有效，能够暴露自己的认知盲区，通过纠正错误来加深理解。我将继续使用这种方法来学习其他Java 8新特性和函数式编程的知识点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/04/08/Java%20Stream%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="cuidGW75uL6A_JlnBg0QVStby" data-title="Java Stream流学习总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java 方法引用-学习总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/04/08/Java%20%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2026-04-07T16:00:00.000Z" itemprop="datePublished">2026-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/04/08/Java%20%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java 方法引用学习总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-方法引用学习总结"><a href="#Java-方法引用学习总结" class="headerlink" title="Java 方法引用学习总结"></a>Java 方法引用学习总结</h1><h2 id="一、今日学习内容汇总"><a href="#一、今日学习内容汇总" class="headerlink" title="一、今日学习内容汇总"></a>一、今日学习内容汇总</h2><ol>
+<li><p><strong>方法引用的定义和语法</strong></p>
+<ul>
+<li>定义：复用已有方法作为函数式接口的实现</li>
+<li>语法格式：<code>::</code> 双冒号</li>
+<li>类型：静态方法引用、实例方法引用、构造方法引用、数组构造方法引用</li>
+</ul>
+</li>
+<li><p><strong>方法引用的使用条件</strong></p>
+<ul>
+<li>函数式接口：必须是只有一个抽象方法的接口</li>
+<li>方法签名匹配：参数类型、个数和返回类型一致</li>
+<li>上下文推断：编译器能从上下文推断类型</li>
+</ul>
+</li>
+<li><p><strong>方法引用的实际应用场景</strong></p>
+<ul>
+<li>集合操作：排序、遍历</li>
+<li>Stream流：map、filter、forEach、collect</li>
+<li>函数式接口：作为Function、Consumer、Supplier等的实现</li>
+</ul>
+</li>
+<li><p><strong>方法引用与Lambda的关系</strong></p>
+<ul>
+<li>方法引用是Lambda的语法糖</li>
+<li>当Lambda体只是调用一个已有的方法时，使用方法引用更简洁</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、今日记忆口诀汇总"><a href="#二、今日记忆口诀汇总" class="headerlink" title="二、今日记忆口诀汇总"></a>二、今日记忆口诀汇总</h2><ol>
+<li><p><strong>方法引用基本概念</strong>：方法引用双冒号，静态实例和构造；参数列表要匹配，函数接口是前提。</p>
+</li>
+<li><p><strong>方法引用使用条件</strong>：函数接口是前提，方法签名要匹配；参数个数和类型，返回类型都得对；上下文要明确，编译器能推断。</p>
+</li>
+<li><p><strong>方法引用应用场景</strong>：集合操作要排序，方法引用很方便；Stream流中常用到，map forEach最常见；函数接口作参数，方法引用更简洁。</p>
+</li>
+<li><p><strong>方法引用类型</strong>：静态方法类名引，实例方法对象引；构造方法用new，数组构造类型引。</p>
+</li>
+</ol>
+<h2 id="三、学习时长统计"><a href="#三、学习时长统计" class="headerlink" title="三、学习时长统计"></a>三、学习时长统计</h2><p>本次学习时长：约1.5小时</p>
+<h2 id="四、明日学习计划"><a href="#四、明日学习计划" class="headerlink" title="四、明日学习计划"></a>四、明日学习计划</h2><ol>
+<li><p><strong>复习任务</strong>：</p>
+<ul>
+<li>重读今日学习内容，重点掌握方法引用的四种类型和使用条件</li>
+<li>尝试口头复述所有记忆口诀，确保熟练掌握</li>
+</ul>
+</li>
+<li><p><strong>新学任务</strong>：</p>
+<ul>
+<li>学习Optional类及其用法（解决空指针问题）</li>
+<li>探索Java 8的其他新特性（默认方法、静态方法）</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、学习心得"><a href="#五、学习心得" class="headerlink" title="五、学习心得"></a>五、学习心得</h2><p>通过费曼学习法的问答模式，我对方法引用的理解从表层深入到了实际应用。特别是在方法引用的四种类型、使用条件和实际应用场景方面，通过具体代码示例，我对这些知识点的掌握更加牢固。</p>
+<p>方法引用是Java 8引入的语法糖，它让代码更加简洁、易读。理解方法引用的使用条件（函数式接口、方法签名匹配、上下文推断），能够帮助我在实际开发中正确使用方法引用，提高代码质量。</p>
+<p>方法引用在Stream流操作中尤为常用，它可以让Stream代码更加简洁、清晰。结合Lambda表达式，方法引用成为了Java 8函数式编程的重要工具。</p>
+<p>这种”问-答-纠错-深化”的学习方法非常有效，能够暴露自己的认知盲区，通过纠正错误来加深理解。我将继续使用这种方法来学习其他Java 8新特性和函数式编程的知识点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/04/08/Java%20%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="cuid6NEXVePCV3fBkWFpoe1mu" data-title="Java 方法引用学习总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java网络编程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/30/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2026-03-29T16:00:00.000Z" itemprop="datePublished">2026-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/03/30/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Java网络编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java学习知识库"><a href="#Java学习知识库" class="headerlink" title="Java学习知识库"></a>Java学习知识库</h1><h2 id="2026-03-30-Java网络编程"><a href="#2026-03-30-Java网络编程" class="headerlink" title="2026-03-30 Java网络编程"></a>2026-03-30 Java网络编程</h2><h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><p>Java网络编程的基本概念、核心组件、通信模型、常见协议及代码实现</p>
+<h3 id="核心洞察"><a href="#核心洞察" class="headerlink" title="核心洞察"></a>核心洞察</h3><ol>
+<li><p><strong>基本概念</strong>：Java网络编程是利用Java语言实现计算机之间通过网络进行数据连接与传输的技术，常见架构有B&#x2F;S和C&#x2F;S。</p>
+</li>
+<li><p><strong>核心组件</strong>：</p>
+<ul>
+<li>Socket：客户端用于建立与服务器的连接。</li>
+<li>ServerSocket：服务器端用于监听客户端的连接请求。</li>
+<li>DatagramSocket：用于UDP协议的通信。</li>
+<li>DatagramPacket：用于UDP协议的数据包。</li>
+</ul>
+</li>
+<li><p><strong>通信模型</strong>：</p>
+<ul>
+<li>服务器启动并监听指定端口。</li>
+<li>客户端向服务器发起连接请求。</li>
+<li>通过TCP三次握手建立连接。</li>
+<li>客户端和服务器通过输入输出流交换数据。</li>
+<li>通过TCP四次挥手断开连接。</li>
+</ul>
+</li>
+<li><p><strong>常见协议</strong>：</p>
+<ul>
+<li>TCP：面向连接的协议，可靠，不丢包，适用于对数据准确性要求高的场景（如银行、电商）。</li>
+<li>UDP：无连接协议，不可靠，可能丢包，适用于对实时性要求高的场景（如直播、视频会议）。</li>
+</ul>
+</li>
+<li><p><strong>代码实现</strong>：</p>
+<ul>
+<li>客户端：创建Socket，连接服务器，获取输入输出流，发送和接收数据。</li>
+<li>服务器：创建ServerSocket，监听端口，接受客户端连接，获取输入输出流，处理请求并响应。</li>
+</ul>
+</li>
+</ol>
+<h3 id="记忆口诀"><a href="#记忆口诀" class="headerlink" title="记忆口诀"></a>记忆口诀</h3><p>Java网络编程好，Socket来搭桥，<br>TCP连接稳，UDP速度高，<br>客户端发请求，服务器响应到，<br>三次握手建连接，四次挥手断开了。</p>
+<h3 id="实战锦囊"><a href="#实战锦囊" class="headerlink" title="实战锦囊"></a>实战锦囊</h3><ol>
+<li><strong>高并发处理</strong>：使用线程池或NIO（如Netty框架）处理多个客户端连接，提高性能。</li>
+<li><strong>端口管理</strong>：使用<code>netstat -ano</code>查看端口占用情况，选择未被占用的端口。</li>
+<li><strong>超时设置</strong>：设置合理的连接超时时间，避免网络不稳定时的阻塞。</li>
+<li><strong>数据传输</strong>：使用缓冲流或批量发送，提高数据传输效率。</li>
+<li><strong>安全性</strong>：对敏感数据使用SSL&#x2F;TLS进行加密传输。</li>
+<li><strong>心跳机制</strong>：实现心跳检测，避免死连接占用资源。</li>
+<li><strong>异常处理</strong>：使用try-with-resources语句管理资源，确保资源正确关闭。</li>
+</ol>
+<h3 id="源码-扩展阅读链接"><a href="#源码-扩展阅读链接" class="headerlink" title="源码&#x2F;扩展阅读链接"></a>源码&#x2F;扩展阅读链接</h3><ul>
+<li>Java网络编程教程：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/networking/">https://docs.oracle.com/javase/tutorial/networking/</a></li>
+<li>Netty官方文档：<a target="_blank" rel="noopener" href="https://netty.io/wiki/user-guide-for-4.x.html">https://netty.io/wiki/user-guide-for-4.x.html</a></li>
+<li>Java并发编程实战（书籍）</li>
+</ul>
+<h3 id="用户回答整理"><a href="#用户回答整理" class="headerlink" title="用户回答整理"></a>用户回答整理</h3><ol>
+<li><strong>基本概念</strong>：计算机于计算机之间通过网络进行数据连接与传输，常见架构有B&#x2F;S、C&#x2F;S架构。</li>
+<li><strong>核心组件</strong>：Socket端口（创建端口）、ServerSocket（用于TCP协议服务端建设）。</li>
+<li><strong>通信模型</strong>：通过TCP的三次握手和四次挥手建立和断开连接，交换数据时先建立字节流对象，外面包裹Buffer或print提升效率。</li>
+<li><strong>常见协议</strong>：<ul>
+<li>TCP：面向有连接的服务，三次握手，四次挥手，不容易丢包，适用于银行等对数据敏感的区域。</li>
+<li>UDP：面向无连接的服务，只管发，不管是否收到，容易丢包，适用于直播和对数据不敏感的领域。</li>
+</ul>
+</li>
+<li><strong>代码示例</strong>：提供了TCP客户端和服务器的完整代码，包括连接建立、数据发送和接收、资源关闭等步骤。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/30/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" data-id="cuidkfyQsqz6Gkdib2ps18mHe" data-title="Java网络编程" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-java线程池" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/25/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="article-date">
+  <time class="dt-published" datetime="2026-03-24T16:00:00.000Z" itemprop="datePublished">2026-03-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/03/25/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Java线程池工作原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java学习知识库"><a href="#Java学习知识库" class="headerlink" title="Java学习知识库"></a>Java学习知识库</h1><h2 id="2026-03-25-Java线程池工作原理"><a href="#2026-03-25-Java线程池工作原理" class="headerlink" title="2026-03-25 Java线程池工作原理"></a>2026-03-25 Java线程池工作原理</h2><h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><p>线程池的工作原理，包括线程池的组成、任务执行流程、线程池状态</p>
+<h3 id="核心洞察"><a href="#核心洞察" class="headerlink" title="核心洞察"></a>核心洞察</h3><ol>
+<li><p><strong>线程池的组成</strong>：</p>
+<ul>
+<li>核心线程数（corePoolSize）：线程池长期保持的线程数量，即使空闲也不回收（除非设置allowCoreThreadTimeOut）。</li>
+<li>最大线程数（maximumPoolSize）：线程池允许的最大线程数，核心线程忙且队列满时创建新线程直到此上限。</li>
+<li>工作队列（workQueue）：存储等待执行的任务，类型有ArrayBlockingQueue、LinkedBlockingQueue、SynchronousQueue等。</li>
+<li>拒绝策略（RejectedExecutionHandler）：队列满且线程数达上限时的处理策略，如AbortPolicy、CallerRunsPolicy等。</li>
+<li>其他组件：线程工厂（ThreadFactory）、keepAliveTime（非核心线程空闲存活时间）等。</li>
+</ul>
+</li>
+<li><p><strong>任务执行流程</strong>：</p>
+<ul>
+<li>提交任务时，先检查核心线程数：未达上限则创建核心线程执行任务。</li>
+<li>核心线程满则检查队列：队列未满则入队等待。</li>
+<li>队列满则检查最大线程数：未达上限则创建非核心线程执行任务。</li>
+<li>最大线程数满则触发拒绝策略。</li>
+<li>线程执行完任务后继续从队列获取任务，实现线程复用。</li>
+<li>任务执行异常时，线程会被终止并创建新线程替代。</li>
+</ul>
+</li>
+<li><p><strong>线程池状态</strong>：</p>
+<ul>
+<li>RUNNING：运行状态，接收新任务并处理队列任务。</li>
+<li>STOP：停止状态，不接收新任务，中断正在执行的任务，清空队列。</li>
+<li>TIDYING：整理状态，所有任务执行完毕，所有线程终止，执行terminated()方法。</li>
+<li>TERMINATED：终止状态，terminated()方法执行完毕，线程池完全终止。</li>
+</ul>
+</li>
+</ol>
+<h3 id="记忆口诀"><a href="#记忆口诀" class="headerlink" title="记忆口诀"></a>记忆口诀</h3><p>线程池，四状态，RUNNING最繁忙，<br>STOP中断清队列，TIDYING整理忙，<br>TERMINATED终收场。<br>核心线程长期在，最大线程应急忙，<br>队列满时拒绝上，线程复用效率强。</p>
+<h3 id="实战锦囊"><a href="#实战锦囊" class="headerlink" title="实战锦囊"></a>实战锦囊</h3><ol>
+<li><strong>核心线程数配置</strong>：通常设置为CPU核心数或CPU核心数+1，充分利用CPU资源。</li>
+<li><strong>最大线程数配置</strong>：通常设置为核心线程数的2-4倍，应对突发流量。</li>
+<li><strong>工作队列选择</strong>：互联网应用用LinkedBlockingQueue，金融场景用ArrayBlockingQueue。</li>
+<li><strong>拒绝策略选择</strong>：秒杀场景用AbortPolicy配合熔断，后台任务用DiscardOldestPolicy。</li>
+<li><strong>监控与优化</strong>：监控活跃线程数、队列长度、任务执行时间，根据实际负载调整参数。</li>
+<li><strong>异常处理</strong>：任务中添加try-catch块，避免线程意外终止。</li>
+<li><strong>优雅停机</strong>：使用shutdown()方法，等待任务执行完毕后再停止线程池。</li>
+</ol>
+<h3 id="源码-扩展阅读链接"><a href="#源码-扩展阅读链接" class="headerlink" title="源码&#x2F;扩展阅读链接"></a>源码&#x2F;扩展阅读链接</h3><ul>
+<li>ThreadPoolExecutor源码：<a target="_blank" rel="noopener" href="https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/concurrent/ThreadPoolExecutor.java">https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/concurrent/ThreadPoolExecutor.java</a></li>
+<li>Java并发编程实战（书籍）</li>
+<li>Java线程池原理与实践：<a target="_blank" rel="noopener" href="https://www.baeldung.com/java-thread-pool">https://www.baeldung.com/java-thread-pool</a></li>
+</ul>
+<h3 id="用户回答整理"><a href="#用户回答整理" class="headerlink" title="用户回答整理"></a>用户回答整理</h3><ol>
+<li><p><strong>线程池的组成</strong>：</p>
+<ul>
+<li>核心线程与最大线程：核心线程数是线程池长期保持的线程数量，最大线程数是线程池允许的最大线程数。</li>
+<li>工作队列：用于存储等待执行的任务。</li>
+<li>拒绝策略：当线程池达到最大线程数且工作队列已满时，对新提交任务的处理策略。</li>
+<li>其他组件：线程工厂、keepAliveTime等。</li>
+</ul>
+</li>
+<li><p><strong>任务执行流程</strong>：</p>
+<ul>
+<li>任务提交时的处理：检查核心线程数、队列、最大线程数，决定创建线程还是入队。</li>
+<li>线程执行任务的过程：线程从队列获取任务执行，执行完毕后继续获取下一个任务，实现线程复用。</li>
+<li>队列满时的处理：触发拒绝策略。</li>
+<li>任务执行异常的处理：线程被终止并创建新线程替代。</li>
+</ul>
+</li>
+<li><p><strong>线程池状态</strong>：</p>
+<ul>
+<li>RUNNING：运行状态，接收新任务并处理队列任务。</li>
+<li>STOP：停止状态，不接收新任务，中断正在执行的任务。</li>
+<li>TIDYING：整理状态，所有任务执行完毕，所有线程终止。</li>
+<li>TERMINATED：终止状态，线程池完全终止。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/25/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/" data-id="cuidzt9uvPU_cJbF9S-ziasza" data-title="Java线程池工作原理" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java Thread类-学习总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/23/Java%20Thread%E7%B1%BB-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2026-03-22T16:00:00.000Z" itemprop="datePublished">2026-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/03/23/Java%20Thread%E7%B1%BB-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Thread类-学习总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-Thread类-学习总结"><a href="#Java-Thread类-学习总结" class="headerlink" title="Java Thread类-学习总结"></a>Java Thread类-学习总结</h1><p><strong>日期：2026-03-23</strong></p>
+<h2 id="一、今日学习内容汇总"><a href="#一、今日学习内容汇总" class="headerlink" title="一、今日学习内容汇总"></a>一、今日学习内容汇总</h2><h3 id="1-Thread类的定义和作用"><a href="#1-Thread类的定义和作用" class="headerlink" title="1. Thread类的定义和作用"></a>1. Thread类的定义和作用</h3><p><strong>定义</strong>：Thread类是Java中用于创建和管理线程的核心类，位于<code>java.lang</code>包中。它实现了<code>Runnable</code>接口，提供了线程的生命周期管理方法。</p>
+<p><strong>核心作用</strong>：</p>
+<ul>
+<li><strong>创建线程</strong>：通过继承Thread类或实现Runnable接口创建线程</li>
+<li><strong>启动线程</strong>：调用<code>start()</code>方法启动线程</li>
+<li><strong>管理线程</strong>：提供了线程的暂停、恢复、中断等方法</li>
+<li><strong>线程同步</strong>：支持线程间的同步和通信</li>
+</ul>
+<p><strong>应用场景</strong>：</p>
+<ul>
+<li><strong>后台任务</strong>：执行耗时操作（如文件下载、数据处理）</li>
+<li><strong>并行计算</strong>：利用多核CPU进行并行计算，提高程序运行效率</li>
+<li><strong>实时响应</strong>：处理实时数据（如传感器数据、网络消息），确保系统及时响应</li>
+<li><strong>多任务处理</strong>：同时处理多个独立任务，提高系统吞吐量</li>
+</ul>
+<p><strong>代码示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 继承Thread类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyThread</span> <span class="keyword">extends</span> <span class="title class_">Thread</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Thread: &quot;</span> + i);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">MyThread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyThread</span>();</span><br><span class="line">        thread.start(); <span class="comment">// 启动线程</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Thread类的常用方法"><a href="#2-Thread类的常用方法" class="headerlink" title="2. Thread类的常用方法"></a>2. Thread类的常用方法</h3><p><strong>start()</strong>：</p>
+<ul>
+<li><strong>作用</strong>：启动线程，使线程进入就绪状态</li>
+<li><strong>注意</strong>：不能重复调用start()方法，否则会抛出IllegalThreadStateException</li>
+</ul>
+<p><strong>run()</strong>：</p>
+<ul>
+<li><strong>作用</strong>：线程的任务逻辑，线程启动后会自动调用run()方法</li>
+<li><strong>注意</strong>：直接调用run()方法不会启动新线程，只是普通方法调用</li>
+</ul>
+<p><strong>sleep(long millis)</strong>：</p>
+<ul>
+<li><strong>作用</strong>：使当前线程暂停执行指定时间（毫秒）</li>
+<li><strong>特点</strong>：睡眠时不会释放锁，其他线程无法访问该锁保护的资源</li>
+<li><strong>注意</strong>：会抛出InterruptedException异常，需要捕获或声明抛出</li>
+</ul>
+<p><strong>join()</strong>：</p>
+<ul>
+<li><strong>作用</strong>：等待该线程终止，直到该线程执行完毕</li>
+<li><strong>场景</strong>：主线程等待子线程执行完毕后再继续执行</li>
+</ul>
+<p><strong>interrupt()</strong>：</p>
+<ul>
+<li><strong>作用</strong>：中断线程，设置线程的中断状态为true</li>
+<li><strong>注意</strong>：不会立即终止线程，需要线程自己检查中断状态并响应</li>
+</ul>
+<p><strong>yield()</strong>：</p>
+<ul>
+<li><strong>作用</strong>：暂停当前正在执行的线程对象，并执行其他线程</li>
+<li><strong>特点</strong>：礼让线程，但不保证其他线程会立即执行，取决于CPU调度</li>
+</ul>
+<p><strong>代码示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// join()方法示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JoinExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;Thread: &quot;</span> + i);</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">        thread.join(); <span class="comment">// 主线程等待子线程执行完毕</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Main thread: Done&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Thread类的线程状态"><a href="#3-Thread类的线程状态" class="headerlink" title="3. Thread类的线程状态"></a>3. Thread类的线程状态</h3><p><strong>NEW</strong>：</p>
+<ul>
+<li><strong>状态</strong>：线程对象已创建，但尚未调用start()方法</li>
+<li><strong>特点</strong>：线程尚未启动，处于初始状态</li>
+</ul>
+<p><strong>RUNNABLE</strong>：</p>
+<ul>
+<li><strong>状态</strong>：线程已启动，正在运行或等待CPU调度</li>
+<li><strong>特点</strong>：包含就绪（Ready）和运行（Running）两种子状态</li>
+<li><strong>转换</strong>：调用start()方法后进入RUNNABLE状态</li>
+</ul>
+<p><strong>BLOCKED</strong>：</p>
+<ul>
+<li><strong>状态</strong>：线程等待获取锁，进入阻塞状态</li>
+<li><strong>场景</strong>：尝试访问被其他线程锁定的同步代码块或方法</li>
+<li><strong>转换</strong>：获取锁后进入RUNNABLE状态</li>
+</ul>
+<p><strong>WAITING</strong>：</p>
+<ul>
+<li><strong>状态</strong>：线程无限期等待，直到被其他线程唤醒</li>
+<li><strong>方法</strong>：wait()、join()、LockSupport.park()</li>
+<li><strong>转换</strong>：被notify()、notifyAll()或interrupt()唤醒后进入RUNNABLE状态</li>
+</ul>
+<p><strong>TIMED_WAITING</strong>：</p>
+<ul>
+<li><strong>状态</strong>：线程在指定时间内等待，超时后自动苏醒</li>
+<li><strong>方法</strong>：sleep(long)、wait(long)、join(long)、LockSupport.parkNanos()、LockSupport.parkUntil()</li>
+<li><strong>转换</strong>：超时或被唤醒后进入RUNNABLE状态</li>
+</ul>
+<p><strong>TERMINATED</strong>：</p>
+<ul>
+<li><strong>状态</strong>：线程执行完毕或异常终止</li>
+<li><strong>特点</strong>：线程生命周期结束，无法再启动</li>
+<li><strong>转换</strong>：run()方法执行完毕或抛出未捕获异常</li>
+</ul>
+<p><strong>线程状态转换关系</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NEW → RUNNABLE → BLOCKED → RUNNABLE</span><br><span class="line">       ↓         ↑</span><br><span class="line">       ↓         ↑</span><br><span class="line">       WAITING ←→ RUNNABLE</span><br><span class="line">       ↓         ↑</span><br><span class="line">       ↓         ↑</span><br><span class="line">       TIMED_WAITING ←→ RUNNABLE</span><br><span class="line">       ↓</span><br><span class="line">       TERMINATED</span><br></pre></td></tr></table></figure>
+
+<p><strong>代码示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 线程状态转换示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ThreadStateExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Thread state: &quot;</span> + Thread.currentThread().getState());</span><br><span class="line">            <span class="keyword">synchronized</span> (ThreadStateExample.class) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    ThreadStateExample.class.wait();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">&quot;Thread state: &quot;</span> + thread.getState()); <span class="comment">// NEW</span></span><br><span class="line">        thread.start();</span><br><span class="line">        Thread.sleep(<span class="number">100</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;Thread state: &quot;</span> + thread.getState()); <span class="comment">// BLOCKED</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">synchronized</span> (ThreadStateExample.class) &#123;</span><br><span class="line">            ThreadStateExample.class.notify();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        Thread.sleep(<span class="number">100</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;Thread state: &quot;</span> + thread.getState()); <span class="comment">// TERMINATED</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、今日记忆口诀汇总"><a href="#二、今日记忆口诀汇总" class="headerlink" title="二、今日记忆口诀汇总"></a>二、今日记忆口诀汇总</h2><h3 id="1-Thread类"><a href="#1-Thread类" class="headerlink" title="1. Thread类"></a>1. Thread类</h3><blockquote>
+<p>Thread类是线程基，创建线程有两种；<br>继承Thread重写run，实现Runnable接口；<br>start()方法来启动，run()方法是任务；<br>多任务并行执行，提高效率响应快！</p>
+</blockquote>
+<h3 id="2-Thread方法"><a href="#2-Thread方法" class="headerlink" title="2. Thread方法"></a>2. Thread方法</h3><blockquote>
+<p>Thread方法有哪些，start run sleep join；<br>start()启动线程，run()方法是任务；<br>sleep()睡眠带锁，join()等待线程完；<br>interrupt()中断线程，yield()礼让不保证！</p>
+</blockquote>
+<h3 id="3-线程状态"><a href="#3-线程状态" class="headerlink" title="3. 线程状态"></a>3. 线程状态</h3><blockquote>
+<p>线程状态有六种，NEW RUNNABLE BLOCKED；<br>WAITING无限期等，TIMED_WAITING计时等；<br>TERMINATED已终止，状态转换要记清；<br>NEW→RUNNABLE start()，RUNNABLE→BLOCKED等锁；<br>WAITING需唤醒，TIMED_WAITING超时醒；<br>TERMINATED run()完，线程生命周期结束！</p>
+</blockquote>
+<h2 id="三、学习时长统计"><a href="#三、学习时长统计" class="headerlink" title="三、学习时长统计"></a>三、学习时长统计</h2><p>本次学习时长：约1.5小时</p>
+<h2 id="四、明日学习计划"><a href="#四、明日学习计划" class="headerlink" title="四、明日学习计划"></a>四、明日学习计划</h2><h3 id="复习任务"><a href="#复习任务" class="headerlink" title="复习任务"></a>复习任务</h3><ol>
+<li><p><strong>复习Thread类的定义和作用</strong></p>
+<ul>
+<li>重读今日学习内容，重点掌握线程的创建方式和应用场景</li>
+<li>尝试口头复述Thread类的记忆口诀</li>
+</ul>
+</li>
+<li><p><strong>复习Thread类的常用方法</strong></p>
+<ul>
+<li>重点掌握start()、run()、sleep()、join()、interrupt()等方法的作用</li>
+<li>尝试口头复述Thread方法的记忆口诀</li>
+</ul>
+</li>
+<li><p><strong>复习线程状态</strong></p>
+<ul>
+<li>重点掌握线程状态的转换关系</li>
+<li>尝试口头复述线程状态的记忆口诀</li>
+</ul>
+</li>
+</ol>
+<h3 id="新学任务"><a href="#新学任务" class="headerlink" title="新学任务"></a>新学任务</h3><ol>
+<li><p><strong>学习线程同步机制</strong></p>
+<ul>
+<li>学习synchronized关键字的使用</li>
+<li>学习Lock接口的使用</li>
+<li>理解线程同步的原理和应用场景</li>
+</ul>
+</li>
+<li><p><strong>学习线程间通信</strong></p>
+<ul>
+<li>学习wait()、notify()、notifyAll()方法的使用</li>
+<li>理解线程间通信的原理和应用场景</li>
+</ul>
+</li>
+<li><p><strong>学习线程池</strong></p>
+<ul>
+<li>学习Executor框架的使用</li>
+<li>学习ThreadPoolExecutor的配置和使用</li>
+<li>理解线程池的原理和应用场景</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、学习心得"><a href="#五、学习心得" class="headerlink" title="五、学习心得"></a>五、学习心得</h2><p>通过费曼学习法的问答模式，我对Thread类的核心知识点有了更深入的理解。特别是线程状态和转换关系，通过具体代码示例，我对这些知识点的掌握更加牢固。</p>
+<p>Thread类是Java多线程编程的基础，掌握它对于编写高效、稳定的多线程程序至关重要。这种”问-答-纠错-深化”的学习方法非常有效，能够暴露自己的认知盲区，通过纠正错误来加深理解。我将继续使用这种方法来学习其他Java多线程相关的知识点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/23/Java%20Thread%E7%B1%BB-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="cuidEg1cWxRrSd_53K-WcG0As" data-title="Java Thread类-学习总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java IO流-进阶知识点学习总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/16/Java%20IO%E6%B5%81-%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86%E7%82%B9%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2026-03-15T16:00:00.000Z" itemprop="datePublished">2026-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/03/16/Java%20IO%E6%B5%81-%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86%E7%82%B9%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java IO流-进阶知识点学习总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-IO流-进阶知识点学习总结"><a href="#Java-IO流-进阶知识点学习总结" class="headerlink" title="Java IO流-进阶知识点学习总结"></a>Java IO流-进阶知识点学习总结</h1><p><strong>日期：2026-03-16</strong></p>
+<h2 id="一、今日学习内容汇总"><a href="#一、今日学习内容汇总" class="headerlink" title="一、今日学习内容汇总"></a>一、今日学习内容汇总</h2><h3 id="1-转换流"><a href="#1-转换流" class="headerlink" title="1. 转换流"></a>1. 转换流</h3><p><strong>定义</strong>：转换流是字节流和字符流之间的桥梁，用于在两者之间进行转换。</p>
+<p><strong>实现类</strong>：</p>
+<ul>
+<li><code>InputStreamReader</code>：将字节流转换为字符流（字节→字符）</li>
+<li><code>OutputStreamWriter</code>：将字符流转换为字节流（字符→字节）</li>
+</ul>
+<p><strong>工作原理</strong>：</p>
+<ul>
+<li><code>InputStreamReader</code>：从底层字节流读取字节，根据指定字符集转换为字符</li>
+<li><code>OutputStreamWriter</code>：接收字符，根据指定字符集转换为字节，写入底层字节流</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>指定字符集读取&#x2F;写入文件，避免乱码</li>
+<li>网络编程中的字符转换</li>
+<li>处理不同字符编码的文本文件</li>
+</ul>
+<p><strong>代码示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用转换流指定字符集读取文件</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    <span class="type">InputStreamReader</span> <span class="variable">isr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;utf8.txt&quot;</span>),</span><br><span class="line">        StandardCharsets.UTF_8</span><br><span class="line">    );</span><br><span class="line">    <span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(isr)</span><br><span class="line">) &#123;</span><br><span class="line">    String line;</span><br><span class="line">    <span class="keyword">while</span> ((line = br.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">        System.out.println(line);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-序列化和反序列化"><a href="#2-序列化和反序列化" class="headerlink" title="2. 序列化和反序列化"></a>2. 序列化和反序列化</h3><p><strong>定义</strong>：</p>
+<ul>
+<li><strong>序列化</strong>：将内存中的对象转换为字节序列的过程</li>
+<li><strong>反序列化</strong>：将字节序列转换回内存中的对象的过程</li>
+</ul>
+<p><strong>实现方式</strong>：</p>
+<ul>
+<li>实现 <code>Serializable</code> 接口（标记接口）</li>
+<li>使用 <code>ObjectOutputStream</code> 进行序列化（<code>writeObject()</code>）</li>
+<li>使用 <code>ObjectInputStream</code> 进行反序列化（<code>readObject()</code>）</li>
+</ul>
+<p><strong>特点</strong>：</p>
+<ul>
+<li><code>transient</code> 修饰的字段不会被序列化</li>
+<li>建议显式声明 <code>serialVersionUID</code> 确保版本兼容性</li>
+<li>静态字段不会被序列化</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>对象持久化（保存到文件、数据库）</li>
+<li>网络传输（RMI、分布式系统）</li>
+<li>缓存（减少内存使用）</li>
+</ul>
+<p><strong>代码示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 序列化对象</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;object.ser&quot;</span>);</span><br><span class="line">    <span class="type">ObjectOutputStream</span> <span class="variable">oos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(fos)</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;张三&quot;</span>, <span class="number">25</span>);</span><br><span class="line">    oos.writeObject(user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 反序列化对象</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;object.ser&quot;</span>);</span><br><span class="line">    <span class="type">ObjectInputStream</span> <span class="variable">ois</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(fis)</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> (User) ois.readObject();</span><br><span class="line">    System.out.println(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-打印流"><a href="#3-打印流" class="headerlink" title="3. 打印流"></a>3. 打印流</h3><p><strong>定义</strong>：提供便捷的打印方法，用于输出各种类型的数据。</p>
+<p><strong>实现类</strong>：</p>
+<ul>
+<li><code>PrintStream</code>：字节打印流，默认使用系统编码</li>
+<li><code>PrintWriter</code>：字符打印流，可以指定字符集</li>
+</ul>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>自动刷新（调用 println()、printf() 或 format() 时）</li>
+<li>不会抛出 IOException，而是设置内部错误状态</li>
+<li>支持多种数据类型输出（boolean、char、int、long、float、double、String、Object）</li>
+<li>便捷方法：print()、println()、printf()、format()</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>控制台输出（System.out、System.err）</li>
+<li>文件日志（写入日志文件）</li>
+<li>网络通信（向网络连接写入数据）</li>
+</ul>
+<p><strong>代码示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用PrintWriter写入文件（指定字符集）</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    <span class="type">PrintWriter</span> <span class="variable">pw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PrintWriter</span>(</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">OutputStreamWriter</span>(</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;output.txt&quot;</span>),</span><br><span class="line">            StandardCharsets.UTF_8</span><br><span class="line">        ),</span><br><span class="line">        <span class="literal">true</span>  <span class="comment">// 自动刷新</span></span><br><span class="line">    )</span><br><span class="line">) &#123;</span><br><span class="line">    pw.println(<span class="string">&quot;你好，Java！&quot;</span>);</span><br><span class="line">    pw.printf(<span class="string">&quot;数字：%d，浮点数：%.2f%n&quot;</span>, <span class="number">123</span>, <span class="number">3.14</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-压缩和解压缩流"><a href="#4-压缩和解压缩流" class="headerlink" title="4. 压缩和解压缩流"></a>4. 压缩和解压缩流</h3><p><strong>定义</strong>：</p>
+<ul>
+<li><strong>压缩流</strong>：用于将数据压缩成更小的体积</li>
+<li><strong>解压缩流</strong>：用于将压缩的数据还原为原始数据</li>
+</ul>
+<p><strong>实现类</strong>：</p>
+<ul>
+<li><strong>Zip相关</strong>：ZipOutputStream（压缩）、ZipInputStream（解压缩）、ZipEntry（条目）</li>
+<li><strong>GZIP相关</strong>：GZIPOutputStream（压缩）、GZIPInputStream（解压缩）</li>
+<li><strong>其他</strong>：DeflaterOutputStream、InflaterInputStream</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>文件压缩（减小文件大小，节省存储空间）</li>
+<li>备份和归档（将多个文件打包成一个压缩文件）</li>
+<li>网络传输（减少带宽使用，提高传输速度）</li>
+</ul>
+<p><strong>代码示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 压缩文件为ZIP</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;output.zip&quot;</span>);</span><br><span class="line">    <span class="type">ZipOutputStream</span> <span class="variable">zos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipOutputStream</span>(fos)</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="type">ZipEntry</span> <span class="variable">entry</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipEntry</span>(<span class="string">&quot;source.txt&quot;</span>);</span><br><span class="line">    zos.putNextEntry(entry);</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">try</span> (<span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;source.txt&quot;</span>)) &#123;</span><br><span class="line">        <span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="type">int</span> bytesRead;</span><br><span class="line">        <span class="keyword">while</span> ((bytesRead = fis.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">            zos.write(buffer, <span class="number">0</span>, bytesRead);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    zos.closeEntry();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、今日记忆口诀汇总"><a href="#二、今日记忆口诀汇总" class="headerlink" title="二、今日记忆口诀汇总"></a>二、今日记忆口诀汇总</h2><h3 id="1-转换流-1"><a href="#1-转换流-1" class="headerlink" title="1. 转换流"></a>1. 转换流</h3><blockquote>
+<p>转换流是桥，字节字符互转好；<br>InputStreamReader字节到字符，OutputStreamWriter字符到字节；<br>指定字符集防乱码，网络文件都需要！</p>
+</blockquote>
+<h3 id="2-序列化"><a href="#2-序列化" class="headerlink" title="2. 序列化"></a>2. 序列化</h3><blockquote>
+<p>序列化对象转字节，反序列化字节转对象；<br>实现Serializable接口，Object流来操作；<br>writeObject序列化，readObject反序列化；<br>transient字段不序列化，serialVersionUID要声明！</p>
+</blockquote>
+<h3 id="3-打印流-1"><a href="#3-打印流-1" class="headerlink" title="3. 打印流"></a>3. 打印流</h3><blockquote>
+<p>打印流只输出，PrintStream和PrintWriter；<br>自动刷新不用抛异常，多类型输出很方便；<br>System.out是实例，日志文件和控制台！</p>
+</blockquote>
+<h3 id="4-压缩流"><a href="#4-压缩流" class="headerlink" title="4. 压缩流"></a>4. 压缩流</h3><blockquote>
+<p>压缩流减小文件，解压缩还原数据；<br>ZipOutputStream压缩，ZipInputStream解压；<br>ZipEntry条目要创建，putNextEntry别忘记；<br>多文件打包成ZIP，GZIP格式也常用！</p>
+</blockquote>
+<h2 id="三、学习时长统计"><a href="#三、学习时长统计" class="headerlink" title="三、学习时长统计"></a>三、学习时长统计</h2><p>本次学习时长：约2.5小时</p>
+<h2 id="四、明日学习计划"><a href="#四、明日学习计划" class="headerlink" title="四、明日学习计划"></a>四、明日学习计划</h2><h3 id="复习任务"><a href="#复习任务" class="headerlink" title="复习任务"></a>复习任务</h3><ol>
+<li><p><strong>复习转换流</strong></p>
+<ul>
+<li>重读今日学习内容，重点掌握转换流的使用场景和代码示例</li>
+<li>尝试口头复述转换流的记忆口诀</li>
+</ul>
+</li>
+<li><p><strong>复习序列化和反序列化</strong></p>
+<ul>
+<li>重点掌握Serializable接口、transient关键字和serialVersionUID的作用</li>
+<li>尝试口头复述序列化的记忆口诀</li>
+</ul>
+</li>
+<li><p><strong>复习打印流</strong></p>
+<ul>
+<li>重点掌握PrintStream和PrintWriter的区别和使用方法</li>
+<li>尝试口头复述打印流的记忆口诀</li>
+</ul>
+</li>
+<li><p><strong>复习压缩和解压缩流</strong></p>
+<ul>
+<li>重点掌握ZipOutputStream和ZipInputStream的使用步骤</li>
+<li>尝试口头复述压缩流的记忆口诀</li>
+</ul>
+</li>
+</ol>
+<h3 id="新学任务"><a href="#新学任务" class="headerlink" title="新学任务"></a>新学任务</h3><ol>
+<li><p><strong>学习Java NIO（非阻塞IO）</strong></p>
+<ul>
+<li>学习NIO的核心概念：Channel、Buffer、Selector</li>
+<li>学习NIO的文件操作：FileChannel、ByteBuffer</li>
+<li>理解NIO与传统IO的区别和优势</li>
+</ul>
+</li>
+<li><p><strong>探索网络编程基础</strong></p>
+<ul>
+<li>学习Socket和ServerSocket的基本使用</li>
+<li>学习TCP协议的网络编程</li>
+<li>理解网络编程中的IO流应用</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、学习心得"><a href="#五、学习心得" class="headerlink" title="五、学习心得"></a>五、学习心得</h2><p>通过费曼学习法的问答模式，我对Java IO流的进阶知识点有了更深入的理解。特别是在转换流、序列化和反序列化、打印流、压缩和解压缩流方面，通过具体代码示例，我对这些知识点的掌握更加牢固。</p>
+<p>转换流是字节流和字符流之间的桥梁，它解决了字符编码问题，确保了文本数据的正确处理。序列化和反序列化是对象持久化和网络传输的基础，理解它们的实现原理和注意事项，能够帮助我在实际开发中正确处理对象的存储和传输。</p>
+<p>打印流提供了便捷的输出方法，它简化了输出操作，提高了代码的可读性。压缩和解压缩流用于减小文件大小，节省存储空间和传输时间，是文件操作和网络传输中的重要工具。</p>
+<p>这种”问-答-纠错-深化”的学习方法非常有效，能够暴露自己的认知盲区，通过纠正错误来加深理解。我将继续使用这种方法来学习其他Java IO相关的知识点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/16/Java%20IO%E6%B5%81-%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86%E7%82%B9%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="cuidHZE-2OGfTOdOadlTGm47R" data-title="Java IO流-进阶知识点学习总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java IO流-学习总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/13/Java%20IO%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2026-03-12T16:00:00.000Z" itemprop="datePublished">2026-03-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/03/13/Java%20IO%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java IO流学习总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-IO流学习总结"><a href="#Java-IO流学习总结" class="headerlink" title="Java IO流学习总结"></a>Java IO流学习总结</h1><p><strong>日期：2026-03-13</strong></p>
+<h2 id="一、知识点"><a href="#一、知识点" class="headerlink" title="一、知识点"></a>一、知识点</h2><ol>
+<li><p><strong>字节流和字符流</strong></p>
+<ul>
+<li>字节流：处理任何文件（包括视频、音频），处理单位是字节</li>
+<li>字符流：处理文本内容，处理单位是char，底层是字节流+转换器</li>
+<li>适用场景：二进制文件用字节流，文本文件用字符流</li>
+</ul>
+</li>
+<li><p><strong>缓冲流</strong></p>
+<ul>
+<li>定义：装饰器模式的流，添加缓冲区提高I&#x2F;O性能</li>
+<li>工作原理：使用byte[]或char[]数组预先存储数据，批量读写</li>
+<li>性能优势：减少I&#x2F;O操作次数，提高数据传输效率</li>
+<li>常见类：BufferedInputStream、BufferedOutputStream、BufferedReader、BufferedWriter</li>
+</ul>
+</li>
+<li><p><strong>字符集</strong></p>
+<ul>
+<li>定义：字符与编码之间的映射规则</li>
+<li>常见字符集：ASCII、ISO-8859-1、GB2312、GBK、GB18030、Unicode（UTF-8）</li>
+<li>编码问题：字符集不匹配会导致乱码</li>
+<li>解决方案：指定字符集读取和写入文件</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、核心洞察"><a href="#二、核心洞察" class="headerlink" title="二、核心洞察"></a>二、核心洞察</h2><h3 id="字节流和字符流的本质区别"><a href="#字节流和字符流的本质区别" class="headerlink" title="字节流和字符流的本质区别"></a>字节流和字符流的本质区别</h3><p><strong>字节流</strong>是Java IO的基础，它以<strong>字节</strong>（8位）为单位读写数据，直接操作二进制数据，适用于所有类型的文件。字节流不关心数据的含义，只是简单地传输字节。</p>
+<p><strong>字符流</strong>是专门为处理文本数据设计的流，它以<strong>字符</strong>（16位）为单位读写数据，自动处理字符编码转换。字符流的底层仍然是字节流，只是添加了字符编码转换器，将字节转换为字符。</p>
+<p><strong>选择原则</strong>：处理二进制文件（图片、视频、音频等）使用字节流，处理文本文件（.txt、.csv、.properties等）使用字符流。</p>
+<h3 id="缓冲流的工作原理"><a href="#缓冲流的工作原理" class="headerlink" title="缓冲流的工作原理"></a>缓冲流的工作原理</h3><p><strong>缓冲流</strong>是一种装饰器模式的流，它在普通流的基础上添加了缓冲区，用于提高I&#x2F;O操作的性能。缓冲流的工作原理可以用”水井-水桶-饮水者”的比喻来理解：</p>
+<ul>
+<li><strong>水井</strong>：底层流（FileInputStream、FileOutputStream等）</li>
+<li><strong>水桶</strong>：缓冲区（byte[]或char[]数组）</li>
+<li><strong>饮水者</strong>：应用程序</li>
+</ul>
+<p><strong>读取过程</strong>：缓冲流从底层流（水井）读取数据到缓冲区（水桶），应用程序（饮水者）从缓冲区（水桶）读取数据。当缓冲区为空时，再次从底层流读取数据到缓冲区。</p>
+<p><strong>写入过程</strong>：应用程序（饮水者）将数据写入缓冲区（水桶），当缓冲区满时，将数据一次性写入底层流（水井）。调用flush()方法可以强制将缓冲区数据写入底层流。</p>
+<p><strong>性能优势</strong>：缓冲流通过批量读写减少了I&#x2F;O操作次数，显著提高了数据传输效率。缓冲区大小通常为8192字节（8KB），大数据量传输时性能提升明显。</p>
+<h3 id="字符集和字符编码"><a href="#字符集和字符编码" class="headerlink" title="字符集和字符编码"></a>字符集和字符编码</h3><p><strong>字符集</strong>是字符与编码之间的映射规则，它定义了如何将字符转换为字节，以及如何将字节转换回字符。字符编码是字符集的具体实现方式：</p>
+<ul>
+<li><strong>字符集</strong>：定义了字符到数字的映射（如：’A’ → 65）</li>
+<li><strong>字符编码</strong>：定义了数字到字节的转换（如：65 → 0x41）</li>
+</ul>
+<p><strong>常见字符集</strong>：</p>
+<ul>
+<li><strong>ASCII</strong>：7位编码，共128个字符，适用于纯英文文本</li>
+<li><strong>ISO-8859-1</strong>：8位编码，共256个字符，适用于西欧语言文本</li>
+<li><strong>GB2312</strong>：双字节编码，共6763个汉字，适用于简体中文文本</li>
+<li><strong>GBK</strong>：双字节编码，共21886个汉字，适用于中文文本（Windows默认）</li>
+<li><strong>GB18030</strong>：双字节&#x2F;四字节编码，共27484个汉字，适用于中文文本（国家标准）</li>
+<li><strong>Unicode</strong>：统一编码，支持所有语言，适用于国际化文本</li>
+<li><strong>UTF-8</strong>：变长编码（1-4字节），兼容ASCII，适用于国际化文本（推荐）</li>
+</ul>
+<p><strong>编码问题</strong>：字符集不匹配会导致乱码。常见场景包括：</p>
+<ul>
+<li>读取时编码与写入时编码不一致</li>
+<li>平台默认编码不同（Windows：GBK，Linux&#x2F;Mac：UTF-8）</li>
+<li>文件编码声明错误</li>
+</ul>
+<p><strong>解决方案</strong>：指定字符集读取和写入文件，确保编码一致。</p>
+<h2 id="三、记忆口诀"><a href="#三、记忆口诀" class="headerlink" title="三、记忆口诀"></a>三、记忆口诀</h2><ol>
+<li><p><strong>字节流vs字符流</strong>：字节流处理二进制，字符流处理文本；字节流单位是字节，字符流单位是char；字节流更快无转换，字符流自动转编码；二进制文件用字节，文本文件用字符！</p>
+</li>
+<li><p><strong>缓冲流</strong>：缓冲流加缓冲区，减少I&#x2F;O操作次；底层数组来存储，批量读写效率高；字节字符都能用，Buffered前缀要记牢；readLine和newLine，额外功能很实用！</p>
+</li>
+<li><p><strong>字符集</strong>：字符集是映射规则，字符编号到字节；ASCII英文范围窄，GBK中文GB2312；Unicode万国码，UTF-8变长编码；编码一致不乱码，指定字符集要牢记！</p>
+</li>
+</ol>
+<h2 id="四、实战锦囊"><a href="#四、实战锦囊" class="headerlink" title="四、实战锦囊"></a>四、实战锦囊</h2><h3 id="1-字节流和字符流的使用"><a href="#1-字节流和字符流的使用" class="headerlink" title="1. 字节流和字符流的使用"></a>1. 字节流和字符流的使用</h3><p><strong>字节流复制二进制文件</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字节流复制图片</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;source.jpg&quot;</span>);</span><br><span class="line">    <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;target.jpg&quot;</span>)</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">    <span class="type">int</span> bytesRead;</span><br><span class="line">    <span class="keyword">while</span> ((bytesRead = fis.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">        fos.write(buffer, <span class="number">0</span>, bytesRead);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>字符流读取文本文件</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符流读取文本</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    <span class="type">FileReader</span> <span class="variable">fr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;input.txt&quot;</span>);</span><br><span class="line">    <span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(fr)</span><br><span class="line">) &#123;</span><br><span class="line">    String line;</span><br><span class="line">    <span class="keyword">while</span> ((line = br.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">        System.out.println(line);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-缓冲流的使用"><a href="#2-缓冲流的使用" class="headerlink" title="2. 缓冲流的使用"></a>2. 缓冲流的使用</h3><p><strong>字节缓冲流复制文件</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字节缓冲流复制文件</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;source.mp4&quot;</span>);</span><br><span class="line">    <span class="type">BufferedInputStream</span> <span class="variable">bis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedInputStream</span>(fis);  <span class="comment">// 默认8KB缓冲区</span></span><br><span class="line">    <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;target.mp4&quot;</span>);</span><br><span class="line">    <span class="type">BufferedOutputStream</span> <span class="variable">bos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedOutputStream</span>(fos)  <span class="comment">// 默认8KB缓冲区</span></span><br><span class="line">) &#123;</span><br><span class="line">    <span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">4096</span>]; <span class="comment">// 4KB临时缓冲区</span></span><br><span class="line">    <span class="type">int</span> bytesRead;</span><br><span class="line">    <span class="keyword">while</span> ((bytesRead = bis.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">        bos.write(buffer, <span class="number">0</span>, bytesRead);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>字符缓冲流读写文本</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符缓冲流读写文本</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    <span class="type">FileReader</span> <span class="variable">fr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;input.txt&quot;</span>);</span><br><span class="line">    <span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(fr);  <span class="comment">// 默认8KB缓冲区</span></span><br><span class="line">    <span class="type">FileWriter</span> <span class="variable">fw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileWriter</span>(<span class="string">&quot;output.txt&quot;</span>);</span><br><span class="line">    <span class="type">BufferedWriter</span> <span class="variable">bw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedWriter</span>(fw)    <span class="comment">// 默认8KB缓冲区</span></span><br><span class="line">) &#123;</span><br><span class="line">    String line;</span><br><span class="line">    <span class="keyword">while</span> ((line = br.readLine()) != <span class="literal">null</span>) &#123;  <span class="comment">// 读取整行</span></span><br><span class="line">        bw.write(line);</span><br><span class="line">        bw.newLine();  <span class="comment">// 写入换行符</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-字符集的处理"><a href="#3-字符集的处理" class="headerlink" title="3. 字符集的处理"></a>3. 字符集的处理</h3><p><strong>写入UTF-8文件</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 写入UTF-8文件</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">writeUTF8</span><span class="params">(String filePath, String content)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="keyword">try</span> (</span><br><span class="line">        <span class="type">FileWriter</span> <span class="variable">fw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileWriter</span>(filePath, StandardCharsets.UTF_8, <span class="literal">true</span>);  <span class="comment">// 追加模式</span></span><br><span class="line">        <span class="type">BufferedWriter</span> <span class="variable">bw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedWriter</span>(fw)</span><br><span class="line">    ) &#123;</span><br><span class="line">        bw.write(content);</span><br><span class="line">        bw.newLine();</span><br><span class="line">        <span class="comment">// 自动flush和close</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用示例</span></span><br><span class="line">writeUTF8(<span class="string">&quot;output.txt&quot;</span>, <span class="string">&quot;你好，Java！&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>读取UTF-8文件</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 读取UTF-8文件</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">readUTF8</span><span class="params">(String filePath)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="keyword">try</span> (</span><br><span class="line">        <span class="type">FileReader</span> <span class="variable">fr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileReader</span>(filePath, StandardCharsets.UTF_8);</span><br><span class="line">        <span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(fr)</span><br><span class="line">    ) &#123;</span><br><span class="line">        String line;</span><br><span class="line">        <span class="keyword">while</span> ((line = br.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">            System.out.println(line);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用示例</span></span><br><span class="line">readUTF8(<span class="string">&quot;input.txt&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>转换文件编码（GBK → UTF-8）</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 转换文件编码（GBK → UTF-8）</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">convertEncoding</span><span class="params">(String sourcePath, String targetPath)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="keyword">try</span> (</span><br><span class="line">        <span class="type">InputStreamReader</span> <span class="variable">isr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(sourcePath),</span><br><span class="line">            StandardCharsets.GBK  <span class="comment">// 源文件编码</span></span><br><span class="line">        );</span><br><span class="line">        <span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(isr);</span><br><span class="line">        <span class="type">OutputStreamWriter</span> <span class="variable">osw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OutputStreamWriter</span>(</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(targetPath),</span><br><span class="line">            StandardCharsets.UTF_8  <span class="comment">// 目标文件编码</span></span><br><span class="line">        );</span><br><span class="line">        <span class="type">BufferedWriter</span> <span class="variable">bw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedWriter</span>(osw)</span><br><span class="line">    ) &#123;</span><br><span class="line">        String line;</span><br><span class="line">        <span class="keyword">while</span> ((line = br.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">            bw.write(line);</span><br><span class="line">            bw.newLine();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 自动flush和close</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用示例</span></span><br><span class="line">convertEncoding(<span class="string">&quot;gbk.txt&quot;</span>, <span class="string">&quot;utf8.txt&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-实际应用场景"><a href="#4-实际应用场景" class="headerlink" title="4. 实际应用场景"></a>4. 实际应用场景</h3><p><strong>读取配置文件（字符流+缓冲流）</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用字符流读取配置文件</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    <span class="type">FileReader</span> <span class="variable">fr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileReader</span>(<span class="string">&quot;config.properties&quot;</span>);</span><br><span class="line">    <span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(fr)</span><br><span class="line">) &#123;</span><br><span class="line">    String line;</span><br><span class="line">    <span class="keyword">while</span> ((line = br.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!line.startsWith(<span class="string">&quot;#&quot;</span>) &amp;&amp; !line.trim().isEmpty()) &#123;</span><br><span class="line">            String[] parts = line.split(<span class="string">&quot;=&quot;</span>);</span><br><span class="line">            <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> parts[<span class="number">0</span>].trim();</span><br><span class="line">            <span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> parts[<span class="number">1</span>].trim();</span><br><span class="line">            System.out.println(key + <span class="string">&quot; = &quot;</span> + value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>复制二进制文件（字节流+缓冲流）</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用字节流复制二进制文件</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">copyBinaryFile</span><span class="params">(String sourcePath, String targetPath)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="keyword">try</span> (</span><br><span class="line">        <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(sourcePath);</span><br><span class="line">        <span class="type">BufferedInputStream</span> <span class="variable">bis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedInputStream</span>(fis);</span><br><span class="line">        <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(targetPath);</span><br><span class="line">        <span class="type">BufferedOutputStream</span> <span class="variable">bos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedOutputStream</span>(fos)</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">4096</span>]; <span class="comment">// 4KB缓冲区</span></span><br><span class="line">        <span class="type">int</span> bytesRead;</span><br><span class="line">        <span class="keyword">while</span> ((bytesRead = bis.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">            bos.write(buffer, <span class="number">0</span>, bytesRead);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>写入日志文件（字符流+缓冲流+UTF-8）</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 写入UTF-8日志文件</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">writeLog</span><span class="params">(String logFile, String message)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="keyword">try</span> (</span><br><span class="line">        <span class="type">FileWriter</span> <span class="variable">fw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileWriter</span>(logFile, StandardCharsets.UTF_8, <span class="literal">true</span>);  <span class="comment">// 追加模式</span></span><br><span class="line">        <span class="type">BufferedWriter</span> <span class="variable">bw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedWriter</span>(fw)</span><br><span class="line">    ) &#123;</span><br><span class="line">        bw.write(<span class="keyword">new</span> <span class="title class_">Date</span>().toString() + <span class="string">&quot; - &quot;</span> + message);</span><br><span class="line">        bw.newLine();</span><br><span class="line">        <span class="comment">// 自动flush和close</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用示例</span></span><br><span class="line">writeLog(<span class="string">&quot;app.log&quot;</span>, <span class="string">&quot;系统启动成功&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、用户回答内容"><a href="#五、用户回答内容" class="headerlink" title="五、用户回答内容"></a>五、用户回答内容</h2><h3 id="问题1：什么是字节流和字符流？它们有什么区别？"><a href="#问题1：什么是字节流和字符流？它们有什么区别？" class="headerlink" title="问题1：什么是字节流和字符流？它们有什么区别？"></a>问题1：什么是字节流和字符流？它们有什么区别？</h3><p><strong>用户回答：</strong></p>
+<ul>
+<li>字节流是任何文件都能处理，包括视频和音频，处理单位是字节，它是先准换成字节。</li>
+<li>字符流是只能处理和字符相关的文件，也就是更加擅长处理文本内容，它的处理基本单位是char，其中它的底层也是字节流，加上缓冲流和一个转换器。</li>
+</ul>
+<h3 id="问题2：缓冲流的作用是什么？它与普通流有什么区别？"><a href="#问题2：缓冲流的作用是什么？它与普通流有什么区别？" class="headerlink" title="问题2：缓冲流的作用是什么？它与普通流有什么区别？"></a>问题2：缓冲流的作用是什么？它与普通流有什么区别？</h3><p><strong>用户回答：</strong></p>
+<ul>
+<li>缓冲流可以提高代码的读取性能，其中原因是缓冲流底层会调用一个byte[]数组预先存贮，只要达标后才会进行处理，打个比方：就是要处理的数据，缓冲流和编辑者的关系就是水井-水桶-饮水者的关系。</li>
+</ul>
+<p><strong>代码实例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">FileReader fr=<span class="keyword">new</span> <span class="title class_">FileReader</span>(s);</span><br><span class="line">BufferedReader br=<span class="keyword">new</span> <span class="title class_">BufferedReader</span>(fr,<span class="number">4</span>);</span><br><span class="line"><span class="type">int</span> <span class="variable">read</span> <span class="operator">=</span> br.read();</span><br><span class="line"><span class="keyword">while</span>(read!=-<span class="number">1</span>)&#123;</span><br><span class="line">    System.out.print((<span class="type">char</span>)read);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="问题3：什么是字符集？如何处理字符编码问题？"><a href="#问题3：什么是字符集？如何处理字符编码问题？" class="headerlink" title="问题3：什么是字符集？如何处理字符编码问题？"></a>问题3：什么是字符集？如何处理字符编码问题？</h3><p><strong>用户回答：</strong></p>
+<ul>
+<li>字符集：给每一个字符安排编号</li>
+<li>常见：ASCll英文+电脑上的字符，适用范围较窄</li>
+<li>GBK:中文，使用范围窄</li>
+<li>unicode:万国码（utf-8）:可变长度，作为通用的编码。</li>
+<li>其中字符集不匹配会导致乱码。</li>
+</ul>
+<p><strong>代码实例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FIleIoDemo02</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        String s=<span class="string">&quot;D:\\新建 文本文档.txt&quot;</span>;</span><br><span class="line">        FileWriter fw=<span class="keyword">new</span> <span class="title class_">FileWriter</span>(s, StandardCharsets.UTF_8,<span class="literal">true</span>);</span><br><span class="line">        fw.write(<span class="string">&quot;你好java&quot;</span>);</span><br><span class="line">        fw.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="六、源码-扩展阅读链接"><a href="#六、源码-扩展阅读链接" class="headerlink" title="六、源码&#x2F;扩展阅读链接"></a>六、源码&#x2F;扩展阅读链接</h2><ol>
+<li><p><strong>Java IO流官方文档</strong></p>
+<ul>
+<li>Java 8 InputStream：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html">https://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html</a></li>
+<li>Java 8 OutputStream：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html">https://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html</a></li>
+<li>Java 8 Reader：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/io/Reader.html">https://docs.oracle.com/javase/8/docs/api/java/io/Reader.html</a></li>
+<li>Java 8 Writer：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/io/Writer.html">https://docs.oracle.com/javase/8/docs/api/java/io/Writer.html</a></li>
+</ul>
+</li>
+<li><p><strong>缓冲流官方文档</strong></p>
+<ul>
+<li>Java 8 BufferedInputStream：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/io/BufferedInputStream.html">https://docs.oracle.com/javase/8/docs/api/java/io/BufferedInputStream.html</a></li>
+<li>Java 8 BufferedOutputStream：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/io/BufferedOutputStream.html">https://docs.oracle.com/javase/8/docs/api/java/io/BufferedOutputStream.html</a></li>
+<li>Java 8 BufferedReader：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/io/BufferedReader.html">https://docs.oracle.com/javase/8/docs/api/java/io/BufferedReader.html</a></li>
+<li>Java 8 BufferedWriter：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/io/BufferedWriter.html">https://docs.oracle.com/javase/8/docs/api/java/io/BufferedWriter.html</a></li>
+</ul>
+</li>
+<li><p><strong>字符集官方文档</strong></p>
+<ul>
+<li>Java 8 StandardCharsets：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/nio/charset/StandardCharsets.html">https://docs.oracle.com/javase/8/docs/api/java/nio/charset/StandardCharsets.html</a></li>
+<li>Java 8 Charset：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html">https://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html</a></li>
+<li>字符编码详解：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/i18n/text/encoding.html">https://docs.oracle.com/javase/tutorial/i18n/text/encoding.html</a></li>
+</ul>
+</li>
+<li><p><strong>Java IO教程</strong></p>
+<ul>
+<li>Java IO官方教程：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/essential/io/">https://docs.oracle.com/javase/tutorial/essential/io/</a></li>
+<li>Java NIO.2教程：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/essential/io/fileio.html">https://docs.oracle.com/javase/tutorial/essential/io/fileio.html</a></li>
+</ul>
+</li>
+</ol>
+<h2 id="七、明日学习计划"><a href="#七、明日学习计划" class="headerlink" title="七、明日学习计划"></a>七、明日学习计划</h2><h3 id="复习任务（强关联）"><a href="#复习任务（强关联）" class="headerlink" title="复习任务（强关联）"></a>复习任务（强关联）</h3><ol>
+<li><p><strong>复习字节流和字符流</strong></p>
+<ul>
+<li>打开 <code>D:\桌面\笔记文件夹\Note.md</code>，重读【2026-03-13 Java IO流】章节中关于’字节流和字符流’的内容</li>
+<li>尝试口头复述字节流和字符流的记忆口诀：”字节流处理二进制，字符流处理文本”</li>
+</ul>
+</li>
+<li><p><strong>复习缓冲流</strong></p>
+<ul>
+<li>重读【2026-03-13 Java IO流】章节中关于’缓冲流’的内容</li>
+<li>尝试口头复述缓冲流的记忆口诀：”缓冲流加缓冲区，减少I&#x2F;O操作次”</li>
+</ul>
+</li>
+<li><p><strong>复习字符集</strong></p>
+<ul>
+<li>重读【2026-03-13 Java IO流】章节中关于’字符集’的内容</li>
+<li>尝试口头复述字符集的记忆口诀：”字符集是映射规则，字符编号到字节”</li>
+</ul>
+</li>
+</ol>
+<h3 id="新学任务"><a href="#新学任务" class="headerlink" title="新学任务"></a>新学任务</h3><ol>
+<li><p><strong>学习Java NIO（非阻塞IO）</strong></p>
+<ul>
+<li>学习NIO的核心概念：Channel、Buffer、Selector</li>
+<li>学习NIO的文件操作：FileChannel、ByteBuffer</li>
+<li>理解NIO与传统IO的区别和优势</li>
+</ul>
+</li>
+<li><p><strong>探索网络编程基础</strong></p>
+<ul>
+<li>学习Socket和ServerSocket的基本使用</li>
+<li>学习TCP协议的网络编程</li>
+<li>理解网络编程中的IO流应用</li>
+</ul>
+</li>
+</ol>
+<p><strong>知识串联预告：</strong></p>
+<ul>
+<li>NIO是对传统IO的增强，提供了更高效的I&#x2F;O操作方式</li>
+<li>网络编程中的Socket通信也使用IO流进行数据传输</li>
+<li>理解这些知识点将为后续学习Netty、Spring Boot等框架打下基础</li>
+</ul>
+<h2 id="八、补充说明"><a href="#八、补充说明" class="headerlink" title="八、补充说明"></a>八、补充说明</h2><ol>
+<li><p><strong>字节流和字符流的注意事项</strong></p>
+<ul>
+<li>字节流处理二进制数据，不关心数据的含义</li>
+<li>字符流处理文本数据，自动进行字符编码转换</li>
+<li>字符流底层仍然是字节流，只是添加了字符编码转换器</li>
+<li>选择流类型时，根据文件类型选择合适的流</li>
+</ul>
+</li>
+<li><p><strong>缓冲流的注意事项</strong></p>
+<ul>
+<li>缓冲流会提高性能，但会增加内存使用</li>
+<li>缓冲区大小通常为8192字节（8KB），可以自定义</li>
+<li>写入数据后调用flush()可以强制将缓冲区数据写入底层流</li>
+<li>使用try-with-resources语法自动关闭流，确保资源释放</li>
+</ul>
+</li>
+<li><p><strong>字符集的注意事项</strong></p>
+<ul>
+<li>读取和写入文件时使用相同的字符集，避免乱码</li>
+<li>Windows平台默认使用GBK，Linux&#x2F;Mac平台默认使用UTF-8</li>
+<li>推荐使用UTF-8编码，支持所有语言字符</li>
+<li>使用StandardCharsets类指定字符集，避免拼写错误</li>
+</ul>
+</li>
+<li><p><strong>学习建议</strong></p>
+<ul>
+<li>结合实际项目练习IO流的使用，掌握常见操作</li>
+<li>注意异常处理，确保流的正确关闭</li>
+<li>使用try-with-resources语法自动关闭流，避免资源泄漏</li>
+<li>理解IO流的装饰器模式，掌握流的组合使用</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/13/Java%20IO%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="cuidj0_uivb8s6wNB6D6VVKUl" data-title="Java IO流学习总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java File类-学习总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/11/Java%20File%E7%B1%BB-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2026-03-10T16:00:00.000Z" itemprop="datePublished">2026-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/03/11/Java%20File%E7%B1%BB-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java File类学习总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-File类学习总结"><a href="#Java-File类学习总结" class="headerlink" title="Java File类学习总结"></a>Java File类学习总结</h1><p><strong>日期：2026-03-11</strong></p>
+<h2 id="一、知识点"><a href="#一、知识点" class="headerlink" title="一、知识点"></a>一、知识点</h2><ol>
+<li><p><strong>File类的定义和主要功能</strong></p>
+<ul>
+<li>文件和目录的抽象表示</li>
+<li>提供操作文件和目录的API</li>
+<li>不处理文件内容，仅操作文件系统</li>
+</ul>
+</li>
+<li><p><strong>File类的常用构造方法和核心方法</strong></p>
+<ul>
+<li>构造方法：File(String pathname)、File(File parent, String child)、File(String parent, String child)</li>
+<li>创建方法：createNewFile()、mkdir()、mkdirs()</li>
+<li>删除方法：delete()、deleteOnExit()</li>
+<li>查询方法：exists()、isFile()、isDirectory()、canRead()、canWrite()、length()、lastModified()</li>
+<li>路径方法：getPath()、getAbsolutePath()、getCanonicalPath()、getName()、getParent()、getParentFile()</li>
+<li>遍历方法：list()、listFiles()、list(FilenameFilter)、listFiles(FileFilter)</li>
+</ul>
+</li>
+<li><p><strong>File类在实际开发中的常见问题和解决方案</strong></p>
+<ul>
+<li>路径问题：路径分隔符不一致、相对路径与绝对路径、路径中的空格和特殊字符</li>
+<li>权限问题：listFiles()返回null、创建文件权限不足、删除文件权限不足</li>
+<li>跨平台问题：路径分隔符差异、文件系统大小写敏感、路径长度限制</li>
+<li>性能问题：大目录遍历性能、频繁文件操作的开销、内存使用</li>
+</ul>
+</li>
+<li><p><strong>File类与Path接口的区别</strong></p>
+<ul>
+<li>设计理念：File类是命令式、可变；Path接口是声明式、不可变</li>
+<li>功能特性：Path接口提供更丰富的路径操作和文件属性功能</li>
+<li>API设计：Path接口支持链式调用，与NIO.2深度集成</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、核心洞察"><a href="#二、核心洞察" class="headerlink" title="二、核心洞察"></a>二、核心洞察</h2><h3 id="File类的本质"><a href="#File类的本质" class="headerlink" title="File类的本质"></a>File类的本质</h3><p><strong>File类是文件和目录的抽象表示</strong>，它提供了一系列方法来操作文件系统，但<strong>不处理文件内容</strong>（文件内容由输入输出流处理）。File类的核心价值在于它是Java中操作文件系统的基础类，为文件和目录的创建、删除、重命名、查询等操作提供了统一的接口。</p>
+<h3 id="File类的核心方法"><a href="#File类的核心方法" class="headerlink" title="File类的核心方法"></a>File类的核心方法</h3><p><strong>构造方法</strong>：提供了三种重载形式，支持通过路径字符串、父目录和子路径等方式创建File对象。</p>
+<p><strong>创建方法</strong>：createNewFile()用于创建新文件，mkdir()用于创建单级目录，mkdirs()用于创建多级目录。</p>
+<p><strong>删除方法</strong>：delete()用于删除文件或空目录，deleteOnExit()用于在JVM退出时删除文件。</p>
+<p><strong>查询方法</strong>：exists()检查文件或目录是否存在，isFile()和isDirectory()判断文件类型，canRead()、canWrite()检查权限，length()获取文件大小，lastModified()获取最后修改时间。</p>
+<p><strong>路径方法</strong>：getPath()获取构造路径，getAbsolutePath()获取绝对路径，getCanonicalPath()获取规范路径，getName()获取文件名，getParent()和getParentFile()获取父目录信息。</p>
+<p><strong>遍历方法</strong>：list()列出目录下的文件名，listFiles()列出目录下的文件对象，list(FilenameFilter)和listFiles(FileFilter)支持按条件过滤文件。</p>
+<h3 id="File类的常见问题"><a href="#File类的常见问题" class="headerlink" title="File类的常见问题"></a>File类的常见问题</h3><p><strong>路径问题</strong>：不同操作系统的路径分隔符不同（Windows使用<code>\</code>，Linux使用<code>/</code>），需要使用File.separator或Paths类来处理跨平台路径。</p>
+<p><strong>权限问题</strong>：在操作文件时需要检查文件是否存在、是否可读可写，否则可能导致操作失败或返回null。</p>
+<p><strong>跨平台问题</strong>：除了路径分隔符，还需要考虑文件系统大小写敏感、路径长度限制等跨平台差异。</p>
+<p><strong>性能问题</strong>：遍历大目录时需要注意性能和内存使用，避免一次性加载所有文件。</p>
+<h3 id="File类与Path接口的对比"><a href="#File类与Path接口的对比" class="headerlink" title="File类与Path接口的对比"></a>File类与Path接口的对比</h3><p><strong>File类</strong>：传统的文件操作类，API设计较为陈旧，功能相对有限，但使用简单直接。</p>
+<p><strong>Path接口</strong>：Java 7引入的现代文件路径接口，提供了更丰富的路径操作功能，支持链式调用，与NIO.2深度集成，是File类的增强版。</p>
+<p><strong>最佳实践</strong>：在Java 7及以上版本中，优先使用Path接口，它提供了更现代、更丰富的API设计，更好的跨平台支持。</p>
+<h2 id="三、记忆口诀"><a href="#三、记忆口诀" class="headerlink" title="三、记忆口诀"></a>三、记忆口诀</h2><ol>
+<li><p><strong>File类基本概念</strong>：File类抽象文件和目录，不处理内容只操作；创建删除重命名，路径状态全掌握；mkdir单级mkdirs多，list文件名listFiles对象；跨平台分隔符用常量，File.separator记得用！</p>
+</li>
+<li><p><strong>File类核心方法</strong>：构造方法三重载，路径拼接要记牢；创建文件createNewFile，目录mkdir和mkdirs；删除文件delete，JVM退出deleteOnExit；exists检查是否在，isFile isDir辨类型；canRead canWrite查权限，length大小lastModified时间；getPath绝对规范路径，getName获取文件名；list列出文件名，listFiles返回File对象；File类操作文件系统，内容处理靠流！</p>
+</li>
+<li><p><strong>File类常见问题</strong>：路径问题要注意，分隔符用File.separator；权限不足需检查，exists canRead canWrite；跨平台用Paths类，大小写敏感要统一；大目录遍历递归，性能问题要优化！</p>
+</li>
+<li><p><strong>File vs Path</strong>：File类老式功能机，基础操作能完成；Path接口智能手机，功能丰富更高级；不可变设计链式调，NIO集成更现代；Java 7+用Path，跨平台支持更给力！</p>
+</li>
+</ol>
+<h2 id="四、实战锦囊"><a href="#四、实战锦囊" class="headerlink" title="四、实战锦囊"></a>四、实战锦囊</h2><h3 id="1-安全的文件操作"><a href="#1-安全的文件操作" class="headerlink" title="1. 安全的文件操作"></a>1. 安全的文件操作</h3><p><strong>文件删除</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">safeDelete</span><span class="params">(File file)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (file == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (!file.exists()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;  <span class="comment">// 文件不存在，视为删除成功</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (file.isDirectory()) &#123;</span><br><span class="line">        <span class="comment">// 递归删除目录内容</span></span><br><span class="line">        File[] files = file.listFiles();</span><br><span class="line">        <span class="keyword">if</span> (files != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (File child : files) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!safeDelete(child)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 检查权限</span></span><br><span class="line">    <span class="keyword">if</span> (!file.canWrite()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> file.delete();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>跨平台文件路径处理</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> File <span class="title function_">createCrossPlatformFile</span><span class="params">(String... pathParts)</span> &#123;</span><br><span class="line">    <span class="comment">// 使用Paths类处理跨平台路径</span></span><br><span class="line">    <span class="type">Path</span> <span class="variable">path</span> <span class="operator">=</span> Paths.get(pathParts[<span class="number">0</span>], Arrays.copyOfRange(pathParts, <span class="number">1</span>, pathParts.length));</span><br><span class="line">    <span class="keyword">return</span> path.toFile();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-文件搜索"><a href="#2-文件搜索" class="headerlink" title="2. 文件搜索"></a>2. 文件搜索</h3><p><strong>递归搜索文件</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> List&lt;File&gt; <span class="title function_">searchFiles</span><span class="params">(File directory, String keyword)</span> &#123;</span><br><span class="line">    List&lt;File&gt; result = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">if</span> (!directory.exists() || !directory.isDirectory()) &#123;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    File[] files = directory.listFiles();</span><br><span class="line">    <span class="keyword">if</span> (files != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (File file : files) &#123;</span><br><span class="line">            <span class="keyword">if</span> (file.isDirectory()) &#123;</span><br><span class="line">                result.addAll(searchFiles(file, keyword));  <span class="comment">// 递归搜索</span></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (file.getName().contains(keyword)) &#123;</span><br><span class="line">                result.add(file);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-目录清理"><a href="#3-目录清理" class="headerlink" title="3. 目录清理"></a>3. 目录清理</h3><p><strong>递归清理目录</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">cleanDirectory</span><span class="params">(File directory)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!directory.exists() || !directory.isDirectory()) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    File[] files = directory.listFiles();</span><br><span class="line">    <span class="keyword">if</span> (files != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (File file : files) &#123;</span><br><span class="line">            <span class="keyword">if</span> (file.isDirectory()) &#123;</span><br><span class="line">                cleanDirectory(file);  <span class="comment">// 递归清理子目录</span></span><br><span class="line">            &#125;</span><br><span class="line">            file.delete();  <span class="comment">// 删除文件或空目录</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-文件复制"><a href="#4-文件复制" class="headerlink" title="4. 文件复制"></a>4. 文件复制</h3><p><strong>使用File类和流复制文件</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">copyFile</span><span class="params">(File source, File target)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="keyword">if</span> (!source.exists() || !source.isFile()) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">FileNotFoundException</span>(<span class="string">&quot;源文件不存在&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 确保目标目录存在</span></span><br><span class="line">    <span class="type">File</span> <span class="variable">parentDir</span> <span class="operator">=</span> target.getParentFile();</span><br><span class="line">    <span class="keyword">if</span> (!parentDir.exists()) &#123;</span><br><span class="line">        parentDir.mkdirs();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 使用字节流复制</span></span><br><span class="line">    <span class="keyword">try</span> (</span><br><span class="line">        <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(source);</span><br><span class="line">        <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(target)</span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="type">int</span> bytesRead;</span><br><span class="line">        <span class="keyword">while</span> ((bytesRead = fis.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">            fos.write(buffer, <span class="number">0</span>, bytesRead);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、用户回答内容"><a href="#五、用户回答内容" class="headerlink" title="五、用户回答内容"></a>五、用户回答内容</h2><h3 id="问题1：什么是File类？它的主要作用是什么？"><a href="#问题1：什么是File类？它的主要作用是什么？" class="headerlink" title="问题1：什么是File类？它的主要作用是什么？"></a>问题1：什么是File类？它的主要作用是什么？</h3><p><strong>用户回答：</strong></p>
+<ul>
+<li>File：文件和目录的抽象表示，主要功能：提供了许多的操作文件和文件夹的API，使用场景：需要操作文件的场景。</li>
+</ul>
+<h3 id="问题2：File类的常用构造方法和核心方法有哪些？"><a href="#问题2：File类的常用构造方法和核心方法有哪些？" class="headerlink" title="问题2：File类的常用构造方法和核心方法有哪些？"></a>问题2：File类的常用构造方法和核心方法有哪些？</h3><p><strong>用户回答：</strong></p>
+<ul>
+<li>参数是Sting，将抽象的文件地址传入到File类当中，</li>
+<li>参数是File,Sting,主要是拼接，将父地址和子地址拼到一起。</li>
+<li>参数是Sting（父），Sting(子)，也是拼接</li>
+</ul>
+<h3 id="问题3：File类在实际开发中的常见问题和解决方案有哪些？"><a href="#问题3：File类在实际开发中的常见问题和解决方案有哪些？" class="headerlink" title="问题3：File类在实际开发中的常见问题和解决方案有哪些？"></a>问题3：File类在实际开发中的常见问题和解决方案有哪些？</h3><p><strong>用户回答：</strong></p>
+<ul>
+<li>路径问题：路径注意转义字符”&#x2F;“，权限问题，有些方法返回值可能会返回null值，比如说是：listFiles(),</li>
+</ul>
+<h3 id="问题4：File类与Java-7引入的Path接口有什么区别？"><a href="#问题4：File类与Java-7引入的Path接口有什么区别？" class="headerlink" title="问题4：File类与Java 7引入的Path接口有什么区别？"></a>问题4：File类与Java 7引入的Path接口有什么区别？</h3><p><strong>用户回答：</strong></p>
+<ul>
+<li>File 像 “老式功能机”：能完成基础的文件 &#x2F; 目录判断、创建 &#x2F; 删除，但功能少、体验差；</li>
+<li>Path 像 “智能手机”：兼容 File 的所有基础功能，还新增了路径拼接、解析、文件属性操作等高级功能</li>
+</ul>
+<h2 id="六、源码-扩展阅读链接"><a href="#六、源码-扩展阅读链接" class="headerlink" title="六、源码&#x2F;扩展阅读链接"></a>六、源码&#x2F;扩展阅读链接</h2><ol>
+<li><p><strong>File类官方文档</strong></p>
+<ul>
+<li>Java 8 File类：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/io/File.html">https://docs.oracle.com/javase/8/docs/api/java/io/File.html</a></li>
+</ul>
+</li>
+<li><p><strong>Path接口官方文档</strong></p>
+<ul>
+<li>Java 8 Path接口：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html">https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html</a></li>
+<li>Java 8 Files工具类：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html">https://docs.oracle.com/javase/8/docs/api/java/nio/file/Files.html</a></li>
+</ul>
+</li>
+<li><p><strong>NIO.2官方文档</strong></p>
+<ul>
+<li>Java 8 NIO.2：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/essential/io/fileio.html">https://docs.oracle.com/javase/tutorial/essential/io/fileio.html</a></li>
+</ul>
+</li>
+<li><p><strong>文件操作最佳实践</strong></p>
+<ul>
+<li>阿里巴巴Java开发手册：<a target="_blank" rel="noopener" href="https://github.com/alibaba/p3c">https://github.com/alibaba/p3c</a></li>
+</ul>
+</li>
+</ol>
+<h2 id="七、明日学习计划"><a href="#七、明日学习计划" class="headerlink" title="七、明日学习计划"></a>七、明日学习计划</h2><h3 id="复习任务（强关联）"><a href="#复习任务（强关联）" class="headerlink" title="复习任务（强关联）"></a>复习任务（强关联）</h3><ol>
+<li><p><strong>复习File类核心方法</strong></p>
+<ul>
+<li>打开 <code>D:\桌面\笔记文件夹\Note.md</code>，重读【2026-03-11 Java File类】章节中关于’File类的常用构造方法和核心方法’的内容</li>
+<li>尝试口头复述File类的记忆口诀：”构造方法三重载，路径拼接要记牢”</li>
+</ul>
+</li>
+<li><p><strong>复习File类常见问题</strong></p>
+<ul>
+<li>重读【2026-03-11 Java File类】章节中关于’File类在实际开发中的常见问题和解决方案’的内容</li>
+<li>尝试口头复述常见问题的记忆口诀：”路径问题要注意，分隔符用File.separator”</li>
+</ul>
+</li>
+</ol>
+<h3 id="新学任务"><a href="#新学任务" class="headerlink" title="新学任务"></a>新学任务</h3><ol>
+<li><p><strong>学习Java 7的NIO.2 API</strong></p>
+<ul>
+<li>学习Files工具类的常用方法：Files.createFile()、Files.copy()、Files.move()、Files.delete()</li>
+<li>学习文件属性操作：Files.readAttributes()、Files.getLastModifiedTime()</li>
+<li>学习目录遍历：Files.walkFileTree()</li>
+</ul>
+</li>
+<li><p><strong>探索文件I&#x2F;O流的使用</strong></p>
+<ul>
+<li>学习字节流：FileInputStream、FileOutputStream</li>
+<li>学习字符流：FileReader、FileWriter</li>
+<li>学习缓冲流：BufferedReader、BufferedWriter</li>
+<li>理解流的关闭和异常处理</li>
+</ul>
+</li>
+</ol>
+<p><strong>知识串联预告：</strong></p>
+<ul>
+<li>NIO.2 API是对传统IO的增强，与File类和Path接口密切相关</li>
+<li>文件I&#x2F;O流是处理文件内容的核心工具，与File类配合使用</li>
+<li>理解这些知识点将为后续学习网络IO、序列化等高级主题打下基础</li>
+</ul>
+<h2 id="八、补充说明"><a href="#八、补充说明" class="headerlink" title="八、补充说明"></a>八、补充说明</h2><ol>
+<li><p><strong>File类的注意事项</strong></p>
+<ul>
+<li>File类的方法可能抛出IOException，需要进行异常处理</li>
+<li>listFiles()方法在目录不存在或权限不足时返回null，需要进行空检查</li>
+<li>delete()方法只能删除空目录，删除非空目录需要递归删除</li>
+<li>createNewFile()方法在文件已存在时返回false，需要先检查文件是否存在</li>
+</ul>
+</li>
+<li><p><strong>Path接口的优势</strong></p>
+<ul>
+<li>不可变设计：Path对象一旦创建，状态不可变，线程安全</li>
+<li>链式调用：支持方法链，代码更简洁</li>
+<li>丰富的路径操作：resolve()、relativize()、normalize()等</li>
+<li>与NIO.2集成：支持异步操作和文件属性操作</li>
+</ul>
+</li>
+<li><p><strong>学习建议</strong></p>
+<ul>
+<li>结合实际项目练习File类的使用，掌握常见操作</li>
+<li>尝试使用Path接口和Files工具类，体验现代API的优势</li>
+<li>注意跨平台兼容性，避免硬编码路径分隔符</li>
+<li>学习文件I&#x2F;O流，理解文件内容的处理方式</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/11/Java%20File%E7%B1%BB-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="cuidsd-in-NL9lbzljMOeiHDL" data-title="Java File类学习总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Java 异常处理和动态代理-学习总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/10/Java%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2026-03-09T16:00:00.000Z" itemprop="datePublished">2026-03-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/03/10/Java%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java 异常处理和动态代理学习总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-异常处理和动态代理学习总结"><a href="#Java-异常处理和动态代理学习总结" class="headerlink" title="Java 异常处理和动态代理学习总结"></a>Java 异常处理和动态代理学习总结</h1><p><strong>日期：2026-03-10</strong></p>
+<h2 id="一、知识点"><a href="#一、知识点" class="headerlink" title="一、知识点"></a>一、知识点</h2><ol>
+<li><p><strong>异常处理</strong></p>
+<ul>
+<li>异常的定义和体系结构</li>
+<li>try-catch-finally的执行顺序</li>
+<li>finally的特殊情况</li>
+<li>return的执行顺序</li>
+</ul>
+</li>
+<li><p><strong>动态代理</strong></p>
+<ul>
+<li>动态代理的定义和与静态代理的区别</li>
+<li>InvocationHandler接口</li>
+<li>Proxy.newProxyInstance()方法</li>
+<li>动态代理的实现原理</li>
+<li>动态代理的实战应用</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、核心洞察"><a href="#二、核心洞察" class="headerlink" title="二、核心洞察"></a>二、核心洞察</h2><h3 id="异常处理部分"><a href="#异常处理部分" class="headerlink" title="异常处理部分"></a>异常处理部分</h3><p><strong>异常的定义和体系结构：</strong></p>
+<ul>
+<li>异常是程序在执行过程中发生的中断正常流程的事件，分为编译时异常（Checked）和运行时异常（Runtime）</li>
+<li>异常体系结构：Throwable → Error（系统错误）和Exception（程序异常）<ul>
+<li>Error：OutOfMemoryError（内存溢出）、StackOverflowError（栈溢出）</li>
+<li>Exception：<ul>
+<li>RuntimeException：NullPointerException（空指针）、ArrayIndexOutOfBoundsException（数组越界）、ClassCastException（类型转换异常）</li>
+<li>Checked Exception：IOException（IO异常）、SQLException（SQL异常）、ClassNotFoundException（类未找到）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>try-catch-finally的执行顺序：</strong></p>
+<ul>
+<li>正常执行：try → finally → 方法返回</li>
+<li>异常执行：try → catch → finally → 方法返回</li>
+<li>finally特殊情况：System.exit()、死循环、断电时不执行</li>
+<li>return执行顺序：先计算返回值，再执行finally，finally有return会覆盖之前的返回值</li>
+</ul>
+<h3 id="动态代理部分"><a href="#动态代理部分" class="headerlink" title="动态代理部分"></a>动态代理部分</h3><p><strong>动态代理的定义和与静态代理的区别：</strong></p>
+<ul>
+<li>动态代理是在运行时动态生成代理类，通过InvocationHandler接口拦截方法调用，实现无侵入式的功能增强</li>
+<li>与静态代理的区别：<ul>
+<li>静态代理：编译时确定代理类，一个目标类对应一个代理类</li>
+<li>动态代理：运行时生成代理类，一个InvocationHandler可以代理多个目标类</li>
+</ul>
+</li>
+</ul>
+<p><strong>动态代理的实现原理：</strong></p>
+<ul>
+<li>InvocationHandler接口：定义方法拦截逻辑，invoke()方法拦截方法调用</li>
+<li>Proxy.newProxyInstance()：动态生成代理对象，需要类加载器、接口数组、InvocationHandler</li>
+<li>方法拦截原理：调用代理方法 → invoke()拦截 → 执行目标方法 → 返回结果</li>
+</ul>
+<p><strong>动态代理的实战应用：</strong></p>
+<ul>
+<li>Spring AOP：基于动态代理实现切面编程（日志、事务、权限控制）</li>
+<li>Spring事务管理：@Transactional注解基于动态代理实现</li>
+<li>RPC调用：Dubbo使用动态代理实现远程调用</li>
+<li>日志拦截：拦截方法调用，记录执行时间和参数</li>
+</ul>
+<h2 id="三、记忆口诀"><a href="#三、记忆口诀" class="headerlink" title="三、记忆口诀"></a>三、记忆口诀</h2><h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><ol>
+<li><p><strong>异常体系</strong>：异常体系Throwable，Error和Exception分；Error是系统错误，Exception是程序异常；Runtime运行时异常，Checked受检要处理；空指针和数组越界，IO和SQL异常！</p>
+</li>
+<li><p><strong>try-catch-finally</strong>：try正常finally跟，异常catch再finally；finally块必执行，exit和死循环除外；return先算后finally，finally有return覆盖；资源释放放finally，防止泄漏要牢记！</p>
+</li>
+</ol>
+<h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><ol>
+<li><p><strong>动态代理基本概念</strong>：动态代理运行时生，InvocationHandler拦截；静态代理编译时定，动态代理更灵活；AOP事务和RPC，动态代理是基础；无侵入式功能增强，代码解耦又优雅！</p>
+</li>
+<li><p><strong>动态代理实现原理</strong>：InvocationHandler拦截，invoke方法核心；Proxy.newProxyInstance，运行时生成代理；方法调用被拦截，前后逻辑自由加；日志事务和权限，动态代理来实现！</p>
+</li>
+</ol>
+<h2 id="四、实战锦囊"><a href="#四、实战锦囊" class="headerlink" title="四、实战锦囊"></a>四、实战锦囊</h2><h3 id="异常处理实战"><a href="#异常处理实战" class="headerlink" title="异常处理实战"></a>异常处理实战</h3><ol>
+<li><p><strong>金融级异常处理</strong></p>
+<ul>
+<li>区分业务异常和系统异常</li>
+<li>业务异常：AccountNotFoundException（账户不存在）、InsufficientBalanceException（余额不足）</li>
+<li>系统异常：SQLException（数据库错误）、IOException（IO错误）</li>
+<li>使用try-catch-finally确保资源释放</li>
+</ul>
+</li>
+<li><p><strong>高并发异常处理</strong></p>
+<ul>
+<li>分布式锁处理InterruptedException</li>
+<li>使用finally确保锁的释放</li>
+<li>捕获运行时异常（NullPointerException、ClassCastException）</li>
+</ul>
+</li>
+<li><p><strong>资源释放</strong></p>
+<ul>
+<li>数据库连接、文件流、网络连接等资源必须在finally中释放</li>
+<li>使用try-with-resources语法（Java 7+）自动关闭资源</li>
+</ul>
+</li>
+</ol>
+<h3 id="动态代理实战"><a href="#动态代理实战" class="headerlink" title="动态代理实战"></a>动态代理实战</h3><ol>
+<li><p><strong>Spring AOP应用</strong></p>
+<ul>
+<li>@Aspect注解定义切面</li>
+<li>@Around环绕通知拦截方法调用</li>
+<li>@Before、@After前置和后置通知</li>
+</ul>
+</li>
+<li><p><strong>事务管理</strong></p>
+<ul>
+<li>@Transactional注解实现声明式事务</li>
+<li>动态代理拦截方法调用，自动开启和提交事务</li>
+<li>异常时自动回滚事务</li>
+</ul>
+</li>
+<li><p><strong>RPC调用</strong></p>
+<ul>
+<li>Dubbo使用动态代理实现远程调用</li>
+<li>@Reference注解注入代理对象</li>
+<li>方法调用时动态代理拦截，发起远程调用</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、用户回答内容"><a href="#五、用户回答内容" class="headerlink" title="五、用户回答内容"></a>五、用户回答内容</h2><h3 id="问题1：什么是异常？Java中的异常体系结构是怎样的？"><a href="#问题1：什么是异常？Java中的异常体系结构是怎样的？" class="headerlink" title="问题1：什么是异常？Java中的异常体系结构是怎样的？"></a>问题1：什么是异常？Java中的异常体系结构是怎样的？</h3><p><strong>用户回答：</strong></p>
+<ul>
+<li>定义：程序运行时发生的异常</li>
+<li>继承关系：throwable–是所有异常的顶端父类，其中他有两个子类——exception（常见的有RuntimeException运行时异常和CheckedException受检异常）和error（jvm错误常见的有内存溢出和栈溢出）</li>
+</ul>
+<h3 id="问题2：什么是动态代理？它与静态代理有什么区别？"><a href="#问题2：什么是动态代理？它与静态代理有什么区别？" class="headerlink" title="问题2：什么是动态代理？它与静态代理有什么区别？"></a>问题2：什么是动态代理？它与静态代理有什么区别？</h3><p><strong>用户回答：</strong></p>
+<ul>
+<li>动态代理就是分离方法调用者和代码，充当一个中间商的角色，防止侵入式代码，动态代理要实现相同的方法</li>
+<li>实现方式：Proxy类，中的newProxyInstance()方法</li>
+</ul>
+<h3 id="问题3：try-catch-finally的执行顺序是怎样的？"><a href="#问题3：try-catch-finally的执行顺序是怎样的？" class="headerlink" title="问题3：try-catch-finally的执行顺序是怎样的？"></a>问题3：try-catch-finally的执行顺序是怎样的？</h3><p><strong>用户回答：</strong></p>
+<ul>
+<li>正常：直接执行try{}里面的代码</li>
+<li>异常执行：一旦发生异常就执行catch{}</li>
+<li>finally：一定会执行</li>
+</ul>
+<h3 id="问题4：动态代理的实现原理是什么？"><a href="#问题4：动态代理的实现原理是什么？" class="headerlink" title="问题4：动态代理的实现原理是什么？"></a>问题4：动态代理的实现原理是什么？</h3><p><strong>用户回答：</strong></p>
+<ul>
+<li>不会啊</li>
+</ul>
+<h2 id="六、源码-扩展阅读链接"><a href="#六、源码-扩展阅读链接" class="headerlink" title="六、源码&#x2F;扩展阅读链接"></a>六、源码&#x2F;扩展阅读链接</h2><ol>
+<li><p><strong>Java异常体系</strong></p>
+<ul>
+<li>Java官方文档：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html">https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html</a></li>
+<li>异常处理最佳实践：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/tutorial/essential/exceptions/">https://docs.oracle.com/javase/tutorial/essential/exceptions/</a></li>
+</ul>
+</li>
+<li><p><strong>动态代理</strong></p>
+<ul>
+<li>Proxy类源码：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html">https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Proxy.html</a></li>
+<li>InvocationHandler接口：<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/InvocationHandler.html">https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/InvocationHandler.html</a></li>
+</ul>
+</li>
+<li><p><strong>Spring AOP</strong></p>
+<ul>
+<li>Spring AOP官方文档：<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#aop">https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#aop</a></li>
+<li>Spring事务管理：<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-framework/docs/current/reference/html/data-access.html#transaction">https://docs.spring.io/spring-framework/docs/current/reference/html/data-access.html#transaction</a></li>
+</ul>
+</li>
+</ol>
+<h2 id="七、明日学习计划"><a href="#七、明日学习计划" class="headerlink" title="七、明日学习计划"></a>七、明日学习计划</h2><h3 id="复习任务（强关联）"><a href="#复习任务（强关联）" class="headerlink" title="复习任务（强关联）"></a>复习任务（强关联）</h3><ol>
+<li><p><strong>复习异常处理</strong></p>
+<ul>
+<li>打开 <code>D:\桌面\笔记文件夹\Note.md</code>，重读【2026-03-10 Java 异常处理和动态代理】章节中关于’try-catch-finally的执行顺序’的实战锦囊</li>
+<li>尝试口头复述异常体系的记忆口诀：”异常体系Throwable，Error和Exception分”</li>
+</ul>
+</li>
+<li><p><strong>复习动态代理</strong></p>
+<ul>
+<li>重读【2026-03-10 Java 异常处理和动态代理】章节中关于’动态代理的实现原理’的核心洞察</li>
+<li>尝试口头复述动态代理的记忆口诀：”InvocationHandler拦截，invoke方法核心”</li>
+</ul>
+</li>
+</ol>
+<h3 id="新学任务"><a href="#新学任务" class="headerlink" title="新学任务"></a>新学任务</h3><ol>
+<li><p><strong>学习Optional类</strong></p>
+<ul>
+<li>学习Optional类的定义和用途（解决空指针问题）</li>
+<li>掌握Optional的常用方法：of()、ofNullable()、isPresent()、ifPresent()、orElse()、orElseGet()、orElseThrow()</li>
+<li>理解Optional与Stream流的结合使用</li>
+</ul>
+</li>
+<li><p><strong>探索Java 8的其他新特性</strong></p>
+<ul>
+<li>学习接口的默认方法（default关键字）</li>
+<li>学习接口的静态方法（static关键字）</li>
+<li>理解这些新特性与之前学习的Lambda表达式、Stream流、方法引用的联系</li>
+</ul>
+</li>
+</ol>
+<p><strong>知识串联预告：</strong></p>
+<ul>
+<li>Optional类是Java 8引入的容器类，用于更优雅地处理空值问题，与Stream流、方法引用等Java 8新特性形成完整的函数式编程工具链</li>
+<li>接口的默认方法和静态方法是Java 8对接口的增强，与之前学习的Lambda表达式、Stream流共同构成了Java 8函数式编程的基础</li>
+</ul>
+<h2 id="八、补充说明"><a href="#八、补充说明" class="headerlink" title="八、补充说明"></a>八、补充说明</h2><ol>
+<li><p><strong>异常处理注意事项</strong></p>
+<ul>
+<li>不要捕获Exception或Throwable，应该捕获具体的异常类型</li>
+<li>不要在finally块中使用return，会覆盖try&#x2F;catch中的return</li>
+<li>不要在finally块中抛出异常，会掩盖try&#x2F;catch中的异常</li>
+<li>使用try-with-resources语法（Java 7+）自动关闭资源</li>
+</ul>
+</li>
+<li><p><strong>动态代理注意事项</strong></p>
+<ul>
+<li>动态代理只能代理接口，不能代理类</li>
+<li>如果需要代理类，可以使用CGLIB（Spring默认使用）</li>
+<li>在invoke()方法中不要使用proxy对象，否则会死循环</li>
+<li>动态代理的性能开销比静态代理大，但在实际应用中可以忽略</li>
+</ul>
+</li>
+<li><p><strong>学习建议</strong></p>
+<ul>
+<li>异常处理和动态代理是Java高级特性，需要多练习才能掌握</li>
+<li>建议结合Spring框架学习动态代理的实际应用</li>
+<li>异常处理是编程基本功，需要在实际项目中不断积累经验</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/10/Java%20%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="cuidbL7BN_lknc1PRn1-LtMGu" data-title="Java 异常处理和动态代理学习总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Map%E5%AE%B6%E6%97%8F-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Map家族学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Stream%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Stream流学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java 方法引用学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/30/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Java网络编程</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/25/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Java线程池工作原理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

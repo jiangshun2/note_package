@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Java Thread类-学习总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Java Thread类-学习总结日期：2026-03-23 一、今日学习内容汇总1. Thread类的定义和作用定义：Thread类是Java中用于创建和管理线程的核心类，位于java.lang包中。它实现了Runnable接口，提供了线程的生命周期管理方法。 核心作用：  创建线程：通过继承Thread类或实现Runnable接口创建线程 启动线程：调用start()方法启动线程 管理线程：提">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java Thread类-学习总结">
+<meta property="og:url" content="http://example.com/2026/03/23/Java%20Thread%E7%B1%BB-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java Thread类-学习总结日期：2026-03-23 一、今日学习内容汇总1. Thread类的定义和作用定义：Thread类是Java中用于创建和管理线程的核心类，位于java.lang包中。它实现了Runnable接口，提供了线程的生命周期管理方法。 核心作用：  创建线程：通过继承Thread类或实现Runnable接口创建线程 启动线程：调用start()方法启动线程 管理线程：提">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-08T09:58:35.117Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="基础">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Java Thread类-学习总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/23/Java%20Thread%E7%B1%BB-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2026-03-22T16:00:00.000Z" itemprop="datePublished">2026-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Java Thread类-学习总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-Thread类-学习总结"><a href="#Java-Thread类-学习总结" class="headerlink" title="Java Thread类-学习总结"></a>Java Thread类-学习总结</h1><p><strong>日期：2026-03-23</strong></p>
+<h2 id="一、今日学习内容汇总"><a href="#一、今日学习内容汇总" class="headerlink" title="一、今日学习内容汇总"></a>一、今日学习内容汇总</h2><h3 id="1-Thread类的定义和作用"><a href="#1-Thread类的定义和作用" class="headerlink" title="1. Thread类的定义和作用"></a>1. Thread类的定义和作用</h3><p><strong>定义</strong>：Thread类是Java中用于创建和管理线程的核心类，位于<code>java.lang</code>包中。它实现了<code>Runnable</code>接口，提供了线程的生命周期管理方法。</p>
+<p><strong>核心作用</strong>：</p>
+<ul>
+<li><strong>创建线程</strong>：通过继承Thread类或实现Runnable接口创建线程</li>
+<li><strong>启动线程</strong>：调用<code>start()</code>方法启动线程</li>
+<li><strong>管理线程</strong>：提供了线程的暂停、恢复、中断等方法</li>
+<li><strong>线程同步</strong>：支持线程间的同步和通信</li>
+</ul>
+<p><strong>应用场景</strong>：</p>
+<ul>
+<li><strong>后台任务</strong>：执行耗时操作（如文件下载、数据处理）</li>
+<li><strong>并行计算</strong>：利用多核CPU进行并行计算，提高程序运行效率</li>
+<li><strong>实时响应</strong>：处理实时数据（如传感器数据、网络消息），确保系统及时响应</li>
+<li><strong>多任务处理</strong>：同时处理多个独立任务，提高系统吞吐量</li>
+</ul>
+<p><strong>代码示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 继承Thread类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyThread</span> <span class="keyword">extends</span> <span class="title class_">Thread</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Thread: &quot;</span> + i);</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">MyThread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MyThread</span>();</span><br><span class="line">        thread.start(); <span class="comment">// 启动线程</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Thread类的常用方法"><a href="#2-Thread类的常用方法" class="headerlink" title="2. Thread类的常用方法"></a>2. Thread类的常用方法</h3><p><strong>start()</strong>：</p>
+<ul>
+<li><strong>作用</strong>：启动线程，使线程进入就绪状态</li>
+<li><strong>注意</strong>：不能重复调用start()方法，否则会抛出IllegalThreadStateException</li>
+</ul>
+<p><strong>run()</strong>：</p>
+<ul>
+<li><strong>作用</strong>：线程的任务逻辑，线程启动后会自动调用run()方法</li>
+<li><strong>注意</strong>：直接调用run()方法不会启动新线程，只是普通方法调用</li>
+</ul>
+<p><strong>sleep(long millis)</strong>：</p>
+<ul>
+<li><strong>作用</strong>：使当前线程暂停执行指定时间（毫秒）</li>
+<li><strong>特点</strong>：睡眠时不会释放锁，其他线程无法访问该锁保护的资源</li>
+<li><strong>注意</strong>：会抛出InterruptedException异常，需要捕获或声明抛出</li>
+</ul>
+<p><strong>join()</strong>：</p>
+<ul>
+<li><strong>作用</strong>：等待该线程终止，直到该线程执行完毕</li>
+<li><strong>场景</strong>：主线程等待子线程执行完毕后再继续执行</li>
+</ul>
+<p><strong>interrupt()</strong>：</p>
+<ul>
+<li><strong>作用</strong>：中断线程，设置线程的中断状态为true</li>
+<li><strong>注意</strong>：不会立即终止线程，需要线程自己检查中断状态并响应</li>
+</ul>
+<p><strong>yield()</strong>：</p>
+<ul>
+<li><strong>作用</strong>：暂停当前正在执行的线程对象，并执行其他线程</li>
+<li><strong>特点</strong>：礼让线程，但不保证其他线程会立即执行，取决于CPU调度</li>
+</ul>
+<p><strong>代码示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// join()方法示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JoinExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;Thread: &quot;</span> + i);</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">        thread.join(); <span class="comment">// 主线程等待子线程执行完毕</span></span><br><span class="line">        System.out.println(<span class="string">&quot;Main thread: Done&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Thread类的线程状态"><a href="#3-Thread类的线程状态" class="headerlink" title="3. Thread类的线程状态"></a>3. Thread类的线程状态</h3><p><strong>NEW</strong>：</p>
+<ul>
+<li><strong>状态</strong>：线程对象已创建，但尚未调用start()方法</li>
+<li><strong>特点</strong>：线程尚未启动，处于初始状态</li>
+</ul>
+<p><strong>RUNNABLE</strong>：</p>
+<ul>
+<li><strong>状态</strong>：线程已启动，正在运行或等待CPU调度</li>
+<li><strong>特点</strong>：包含就绪（Ready）和运行（Running）两种子状态</li>
+<li><strong>转换</strong>：调用start()方法后进入RUNNABLE状态</li>
+</ul>
+<p><strong>BLOCKED</strong>：</p>
+<ul>
+<li><strong>状态</strong>：线程等待获取锁，进入阻塞状态</li>
+<li><strong>场景</strong>：尝试访问被其他线程锁定的同步代码块或方法</li>
+<li><strong>转换</strong>：获取锁后进入RUNNABLE状态</li>
+</ul>
+<p><strong>WAITING</strong>：</p>
+<ul>
+<li><strong>状态</strong>：线程无限期等待，直到被其他线程唤醒</li>
+<li><strong>方法</strong>：wait()、join()、LockSupport.park()</li>
+<li><strong>转换</strong>：被notify()、notifyAll()或interrupt()唤醒后进入RUNNABLE状态</li>
+</ul>
+<p><strong>TIMED_WAITING</strong>：</p>
+<ul>
+<li><strong>状态</strong>：线程在指定时间内等待，超时后自动苏醒</li>
+<li><strong>方法</strong>：sleep(long)、wait(long)、join(long)、LockSupport.parkNanos()、LockSupport.parkUntil()</li>
+<li><strong>转换</strong>：超时或被唤醒后进入RUNNABLE状态</li>
+</ul>
+<p><strong>TERMINATED</strong>：</p>
+<ul>
+<li><strong>状态</strong>：线程执行完毕或异常终止</li>
+<li><strong>特点</strong>：线程生命周期结束，无法再启动</li>
+<li><strong>转换</strong>：run()方法执行完毕或抛出未捕获异常</li>
+</ul>
+<p><strong>线程状态转换关系</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NEW → RUNNABLE → BLOCKED → RUNNABLE</span><br><span class="line">       ↓         ↑</span><br><span class="line">       ↓         ↑</span><br><span class="line">       WAITING ←→ RUNNABLE</span><br><span class="line">       ↓         ↑</span><br><span class="line">       ↓         ↑</span><br><span class="line">       TIMED_WAITING ←→ RUNNABLE</span><br><span class="line">       ↓</span><br><span class="line">       TERMINATED</span><br></pre></td></tr></table></figure>
+
+<p><strong>代码示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 线程状态转换示例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ThreadStateExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Thread state: &quot;</span> + Thread.currentThread().getState());</span><br><span class="line">            <span class="keyword">synchronized</span> (ThreadStateExample.class) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    ThreadStateExample.class.wait();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        System.out.println(<span class="string">&quot;Thread state: &quot;</span> + thread.getState()); <span class="comment">// NEW</span></span><br><span class="line">        thread.start();</span><br><span class="line">        Thread.sleep(<span class="number">100</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;Thread state: &quot;</span> + thread.getState()); <span class="comment">// BLOCKED</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">synchronized</span> (ThreadStateExample.class) &#123;</span><br><span class="line">            ThreadStateExample.class.notify();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        Thread.sleep(<span class="number">100</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;Thread state: &quot;</span> + thread.getState()); <span class="comment">// TERMINATED</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、今日记忆口诀汇总"><a href="#二、今日记忆口诀汇总" class="headerlink" title="二、今日记忆口诀汇总"></a>二、今日记忆口诀汇总</h2><h3 id="1-Thread类"><a href="#1-Thread类" class="headerlink" title="1. Thread类"></a>1. Thread类</h3><blockquote>
+<p>Thread类是线程基，创建线程有两种；<br>继承Thread重写run，实现Runnable接口；<br>start()方法来启动，run()方法是任务；<br>多任务并行执行，提高效率响应快！</p>
+</blockquote>
+<h3 id="2-Thread方法"><a href="#2-Thread方法" class="headerlink" title="2. Thread方法"></a>2. Thread方法</h3><blockquote>
+<p>Thread方法有哪些，start run sleep join；<br>start()启动线程，run()方法是任务；<br>sleep()睡眠带锁，join()等待线程完；<br>interrupt()中断线程，yield()礼让不保证！</p>
+</blockquote>
+<h3 id="3-线程状态"><a href="#3-线程状态" class="headerlink" title="3. 线程状态"></a>3. 线程状态</h3><blockquote>
+<p>线程状态有六种，NEW RUNNABLE BLOCKED；<br>WAITING无限期等，TIMED_WAITING计时等；<br>TERMINATED已终止，状态转换要记清；<br>NEW→RUNNABLE start()，RUNNABLE→BLOCKED等锁；<br>WAITING需唤醒，TIMED_WAITING超时醒；<br>TERMINATED run()完，线程生命周期结束！</p>
+</blockquote>
+<h2 id="三、学习时长统计"><a href="#三、学习时长统计" class="headerlink" title="三、学习时长统计"></a>三、学习时长统计</h2><p>本次学习时长：约1.5小时</p>
+<h2 id="四、明日学习计划"><a href="#四、明日学习计划" class="headerlink" title="四、明日学习计划"></a>四、明日学习计划</h2><h3 id="复习任务"><a href="#复习任务" class="headerlink" title="复习任务"></a>复习任务</h3><ol>
+<li><p><strong>复习Thread类的定义和作用</strong></p>
+<ul>
+<li>重读今日学习内容，重点掌握线程的创建方式和应用场景</li>
+<li>尝试口头复述Thread类的记忆口诀</li>
+</ul>
+</li>
+<li><p><strong>复习Thread类的常用方法</strong></p>
+<ul>
+<li>重点掌握start()、run()、sleep()、join()、interrupt()等方法的作用</li>
+<li>尝试口头复述Thread方法的记忆口诀</li>
+</ul>
+</li>
+<li><p><strong>复习线程状态</strong></p>
+<ul>
+<li>重点掌握线程状态的转换关系</li>
+<li>尝试口头复述线程状态的记忆口诀</li>
+</ul>
+</li>
+</ol>
+<h3 id="新学任务"><a href="#新学任务" class="headerlink" title="新学任务"></a>新学任务</h3><ol>
+<li><p><strong>学习线程同步机制</strong></p>
+<ul>
+<li>学习synchronized关键字的使用</li>
+<li>学习Lock接口的使用</li>
+<li>理解线程同步的原理和应用场景</li>
+</ul>
+</li>
+<li><p><strong>学习线程间通信</strong></p>
+<ul>
+<li>学习wait()、notify()、notifyAll()方法的使用</li>
+<li>理解线程间通信的原理和应用场景</li>
+</ul>
+</li>
+<li><p><strong>学习线程池</strong></p>
+<ul>
+<li>学习Executor框架的使用</li>
+<li>学习ThreadPoolExecutor的配置和使用</li>
+<li>理解线程池的原理和应用场景</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、学习心得"><a href="#五、学习心得" class="headerlink" title="五、学习心得"></a>五、学习心得</h2><p>通过费曼学习法的问答模式，我对Thread类的核心知识点有了更深入的理解。特别是线程状态和转换关系，通过具体代码示例，我对这些知识点的掌握更加牢固。</p>
+<p>Thread类是Java多线程编程的基础，掌握它对于编写高效、稳定的多线程程序至关重要。这种”问-答-纠错-深化”的学习方法非常有效，能够暴露自己的认知盲区，通过纠正错误来加深理解。我将继续使用这种方法来学习其他Java多线程相关的知识点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/23/Java%20Thread%E7%B1%BB-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="cuidEg1cWxRrSd_53K-WcG0As" data-title="Java Thread类-学习总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/03/25/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java线程池工作原理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/03/16/Java%20IO%E6%B5%81-%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86%E7%82%B9%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java IO流-进阶知识点学习总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Map%E5%AE%B6%E6%97%8F-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Map家族学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Stream%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Stream流学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java 方法引用学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/30/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Java网络编程</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/25/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Java线程池工作原理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

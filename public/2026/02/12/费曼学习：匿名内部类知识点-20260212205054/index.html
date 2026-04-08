@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>匿名内部类学习总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="匿名内部类学习总结一、今日学习内容汇总 匿名内部类的定义与语法结构  定义：没有名字、只使用一次的内部类 语法结构：new 父类&#x2F;接口() { &#x2F;&#x2F; 实现或重写方法 }; 父类类型：可以是具体类、抽象类或接口   匿名内部类的核心价值  提供”即用即弃”的机制，简化一次性功能实现 避免为简单功能创建独立命名类文件 让代码更内聚、更简洁   匿名内部类解决的痛点  痛点一：避免创建大量”只为一件事服">
+<meta property="og:type" content="article">
+<meta property="og:title" content="匿名内部类学习总结">
+<meta property="og:url" content="http://example.com/2026/02/12/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%EF%BC%9A%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E7%9F%A5%E8%AF%86%E7%82%B9-20260212205054/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="匿名内部类学习总结一、今日学习内容汇总 匿名内部类的定义与语法结构  定义：没有名字、只使用一次的内部类 语法结构：new 父类&#x2F;接口() { &#x2F;&#x2F; 实现或重写方法 }; 父类类型：可以是具体类、抽象类或接口   匿名内部类的核心价值  提供”即用即弃”的机制，简化一次性功能实现 避免为简单功能创建独立命名类文件 让代码更内聚、更简洁   匿名内部类解决的痛点  痛点一：避免创建大量”只为一件事服">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-02-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-08T10:00:28.121Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="基础">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-费曼学习：匿名内部类知识点-20260212205054" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/02/12/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%EF%BC%9A%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E7%9F%A5%E8%AF%86%E7%82%B9-20260212205054/" class="article-date">
+  <time class="dt-published" datetime="2026-02-11T16:00:00.000Z" itemprop="datePublished">2026-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      匿名内部类学习总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="匿名内部类学习总结"><a href="#匿名内部类学习总结" class="headerlink" title="匿名内部类学习总结"></a>匿名内部类学习总结</h1><h2 id="一、今日学习内容汇总"><a href="#一、今日学习内容汇总" class="headerlink" title="一、今日学习内容汇总"></a>一、今日学习内容汇总</h2><ol>
+<li><p><strong>匿名内部类的定义与语法结构</strong></p>
+<ul>
+<li>定义：没有名字、只使用一次的内部类</li>
+<li>语法结构：<code>new 父类/接口() { // 实现或重写方法 };</code></li>
+<li>父类类型：可以是具体类、抽象类或接口</li>
+</ul>
+</li>
+<li><p><strong>匿名内部类的核心价值</strong></p>
+<ul>
+<li>提供”即用即弃”的机制，简化一次性功能实现</li>
+<li>避免为简单功能创建独立命名类文件</li>
+<li>让代码更内聚、更简洁</li>
+</ul>
+</li>
+<li><p><strong>匿名内部类解决的痛点</strong></p>
+<ul>
+<li>痛点一：避免创建大量”只为一件事服务”的小类文件</li>
+<li>痛点二：实现”回调”和”策略模式”的轻量化</li>
+<li>痛点三：访问外部作用域的变量（有严格限制）</li>
+</ul>
+</li>
+<li><p><strong>匿名内部类的访问权限与限制</strong></p>
+<ul>
+<li>外部类的所有成员变量（包括私有）：无限制，直接访问</li>
+<li>外部方法的局部变量：必须是 final 或 effectively final</li>
+<li>限制原因：保证数据安全，防止引用已销毁的栈帧数据</li>
+</ul>
+</li>
+<li><p><strong>匿名内部类的应用场景</strong></p>
+<ul>
+<li>GUI事件监听：为按钮、菜单项等组件绑定事件处理逻辑</li>
+<li>线程创建：创建并启动简单的后台任务线程</li>
+<li>集合排序：使用Comparator实现自定义排序规则</li>
+<li>回调函数：实现各种回调接口</li>
+</ul>
+</li>
+<li><p><strong>匿名内部类与Lambda表达式的关系</strong></p>
+<ul>
+<li>Lambda是Java 8引入的，用于简化匿名内部类的语法糖</li>
+<li>Lambda只能用于函数式接口（有且仅有一个抽象方法的接口）</li>
+<li>能替代的情况：实现函数式接口时，Lambda更简洁</li>
+<li>不能替代的情况：非函数式接口、需要访问this&#x2F;super、需要定义字段或方法</li>
+<li>本质区别：匿名内部类是”类”，Lambda是”函数”</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、今日记忆口诀汇总"><a href="#二、今日记忆口诀汇总" class="headerlink" title="二、今日记忆口诀汇总"></a>二、今日记忆口诀汇总</h2><ol>
+<li><p><strong>记忆口诀一</strong>：无名之辈，一次就够；继承实现，随用随丢。</p>
+</li>
+<li><p><strong>记忆口诀二</strong>：告别小类，逻辑内聚；捕获上下文，功能更犀利。</p>
+</li>
+<li><p><strong>记忆口诀三</strong>：成员全收，局部要”终”；不变才安全，编译不报错！</p>
+</li>
+<li><p><strong>记忆口诀四</strong>：Lambda新宠，简洁如风；函数式接口，才是它的家。非函数接口，还得靠它（匿名内部类）撑！</p>
+</li>
+<li><p><strong>终极口诀</strong>：无名一次用，语法三合一；解决冗余痛，逻辑更内聚；成员随便拿，局部要”终”字；Lambda是新欢，函数式接口才匹配；非函数接口，老将匿名内部类来顶替！</p>
+</li>
+</ol>
+<h2 id="三、学习时长统计"><a href="#三、学习时长统计" class="headerlink" title="三、学习时长统计"></a>三、学习时长统计</h2><p>本次学习时长：约1小时</p>
+<h2 id="四、明日学习计划"><a href="#四、明日学习计划" class="headerlink" title="四、明日学习计划"></a>四、明日学习计划</h2><ol>
+<li><p><strong>复习任务</strong>：</p>
+<ul>
+<li>重读本文件中关于”匿名内部类访问权限与限制”的部分，重点理解final和effectively final的概念</li>
+<li>尝试口头复述记忆口诀，确保熟练掌握</li>
+</ul>
+</li>
+<li><p><strong>新学任务</strong>：</p>
+<ul>
+<li>学习Lambda表达式的高级用法，包括方法引用、函数式接口的自定义</li>
+<li>探索Stream API，了解它如何与Lambda表达式结合使用</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、学习心得"><a href="#五、学习心得" class="headerlink" title="五、学习心得"></a>五、学习心得</h2><p>通过费曼学习法的问答模式，我对匿名内部类的理解从表层深入到了底层原理。特别是在访问权限限制和与Lambda表达式的对比方面，通过纠错和深化，我对这些知识点的掌握更加牢固。</p>
+<p>匿名内部类虽然在Java 8后被Lambda表达式部分替代，但它仍然是Java语言中的重要特性，在处理非函数式接口和需要特殊访问权限的场景中依然不可或缺。</p>
+<p>这种”问-答-纠错-深化”的学习方法非常有效，能够暴露自己的认知盲区，通过纠正错误来加深理解。我将继续使用这种方法来学习其他Java知识点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/02/12/%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%EF%BC%9A%E5%8C%BF%E5%90%8D%E5%86%85%E9%83%A8%E7%B1%BB%E7%9F%A5%E8%AF%86%E7%82%B9-20260212205054/" data-id="cuid66CTKFGD_8a_3FFQrvg9H" data-title="匿名内部类学习总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/02/13/Java%E4%B8%ADArrays-20260213212034/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java Arrays API - 学习总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/02/11/%E7%94%A8%E8%B4%B9%E6%9B%BC%E5%AD%A6%E4%B9%A0%E6%B3%95%E5%9B%9E%E9%A1%BEJava%E6%97%B6%E9%97%B4%E7%B1%BB-20260211131917/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">用费曼学习法回顾Java时间类</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Map%E5%AE%B6%E6%97%8F-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Map家族学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Stream%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Stream流学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java 方法引用学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/30/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Java网络编程</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/25/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Java线程池工作原理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

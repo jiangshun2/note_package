@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Java 泛型 - 学习总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Java 泛型 - 学习总结学习日期：2026-02-24学习时长：约 25 分钟学习方法：费曼学习法（问答互动）  一、今日学习内容汇总1. 泛型的概念和作用知识点：  泛型是 Java 5 引入的特性，使用 &lt;类型参数&gt; 语法 核心作用： 编译时类型检查，避免运行时 ClassCastException 避免类型转换（不需要手动 cast） 增强代码的可读性和复用性    记忆口诀">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 泛型 - 学习总结">
+<meta property="og:url" content="http://example.com/2026/02/24/Java%E6%B3%9B%E5%9E%8B-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java 泛型 - 学习总结学习日期：2026-02-24学习时长：约 25 分钟学习方法：费曼学习法（问答互动）  一、今日学习内容汇总1. 泛型的概念和作用知识点：  泛型是 Java 5 引入的特性，使用 &lt;类型参数&gt; 语法 核心作用： 编译时类型检查，避免运行时 ClassCastException 避免类型转换（不需要手动 cast） 增强代码的可读性和复用性    记忆口诀">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-02-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-08T10:04:29.332Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="基础">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Java泛型-学习总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/02/24/Java%E6%B3%9B%E5%9E%8B-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2026-02-23T16:00:00.000Z" itemprop="datePublished">2026-02-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Java 泛型 - 学习总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-泛型-学习总结"><a href="#Java-泛型-学习总结" class="headerlink" title="Java 泛型 - 学习总结"></a>Java 泛型 - 学习总结</h1><p><strong>学习日期</strong>：2026-02-24<br><strong>学习时长</strong>：约 25 分钟<br><strong>学习方法</strong>：费曼学习法（问答互动）</p>
+<hr>
+<h2 id="一、今日学习内容汇总"><a href="#一、今日学习内容汇总" class="headerlink" title="一、今日学习内容汇总"></a>一、今日学习内容汇总</h2><h3 id="1-泛型的概念和作用"><a href="#1-泛型的概念和作用" class="headerlink" title="1. 泛型的概念和作用"></a>1. 泛型的概念和作用</h3><p><strong>知识点</strong>：</p>
+<ul>
+<li>泛型是 Java 5 引入的特性，使用 <code>&lt;类型参数&gt;</code> 语法</li>
+<li><strong>核心作用</strong>：<ul>
+<li>编译时类型检查，避免运行时 <code>ClassCastException</code></li>
+<li>避免类型转换（不需要手动 cast）</li>
+<li>增强代码的可读性和复用性</li>
+</ul>
+</li>
+</ul>
+<p><strong>记忆口诀</strong>：</p>
+<blockquote>
+<p><strong>泛型就是尖括号，类型参数往里填</strong><br><strong>编译时检查类型，运行时无转换</strong></p>
+</blockquote>
+<p><strong>实际应用场景</strong>：</p>
+<ul>
+<li>✅ 集合框架：<code>List&lt;String&gt;</code>、<code>Map&lt;String, User&gt;</code></li>
+<li>✅ 工具类：<code>Optional&lt;T&gt;</code>、<code>Function&lt;T, R&gt;</code></li>
+<li>✅ 统一响应体：<code>Response&lt;T&gt;</code></li>
+</ul>
+<p><strong>我的理解</strong>：<br>泛型就像一个类型占位符，在定义类、接口或方法时，用一个符号（如 T、E）来表示某个类型，在使用时再指定具体的类型。这样做的好处是可以在编译时就检查类型是否正确，而不是等到运行时才发现错误。比如，当我们使用 <code>List&lt;String&gt;</code> 时，编译器会检查我们添加的元素是否都是字符串类型，如果不是就会报错，这样就避免了运行时的类型转换错误。</p>
+<hr>
+<h3 id="2-泛型的语法格式"><a href="#2-泛型的语法格式" class="headerlink" title="2. 泛型的语法格式"></a>2. 泛型的语法格式</h3><p><strong>知识点</strong>：</p>
+<p><strong>泛型类</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Box</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> T content;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setContent</span><span class="params">(T content)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.content = content;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">getContent</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> content;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>泛型方法</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Utils</span> &#123;</span><br><span class="line">    <span class="comment">// 类型参数 &lt;T&gt; 必须在返回类型之前</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">printArray</span><span class="params">(T[] array)</span> &#123;</span><br><span class="line">        <span class="keyword">for</span> (T element : array) &#123;</span><br><span class="line">            System.out.println(element);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>钻石操作符（Java 7+）</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Java 6 及之前</span></span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Java 7+（更简洁）</span></span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(); <span class="comment">// 编译器自动推断类型</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>记忆口诀</strong>：</p>
+<blockquote>
+<p><strong>泛型类尖括号在名后，泛型方法尖括号在前</strong><br><strong>钻石操作符省代码，左侧类型自动推断</strong></p>
+</blockquote>
+<p><strong>实际应用场景</strong>：</p>
+<ul>
+<li>✅ 代码更简洁，减少重复代码</li>
+<li>✅ 提高可读性，避免类型参数的冗余</li>
+</ul>
+<p><strong>我的理解</strong>：<br>泛型类的语法是在类名后面加上尖括号，里面放类型参数。泛型方法的语法是在返回类型之前加上尖括号，里面放类型参数。钻石操作符是 Java 7 引入的语法糖，可以让我们在创建泛型实例时省略右侧的泛型类型参数，编译器会自动根据左侧的类型推断，这样代码更简洁。</p>
+<hr>
+<h3 id="3-泛型的通配符"><a href="#3-泛型的通配符" class="headerlink" title="3. 泛型的通配符"></a>3. 泛型的通配符</h3><p><strong>知识点</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>通配符</th>
+<th>名称</th>
+<th>作用</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>?</code></td>
+<td>无界通配符</td>
+<td>代表任意类型</td>
+<td>只读取，不写入</td>
+</tr>
+<tr>
+<td><code>? extends T</code></td>
+<td>上界通配符</td>
+<td>代表 T 或 T 的子类</td>
+<td>只能读，不能写（只读）</td>
+</tr>
+<tr>
+<td><code>? super T</code></td>
+<td>下界通配符</td>
+<td>代表 T 或 T 的父类</td>
+<td>只能写，不能读（只写）</td>
+</tr>
+</tbody></table>
+<p><strong>记忆口诀</strong>：</p>
+<blockquote>
+<p><strong>上界 extends 只读，下界 super 只写</strong><br><strong>无界通配符 ?，任意类型都可以</strong></p>
+</blockquote>
+<p><strong>实际应用场景</strong>：</p>
+<ul>
+<li>✅ <code>? extends T</code>：读取集合中的元素（如 <code>printList(List&lt;? extends Number&gt;)</code>）</li>
+<li>✅ <code>? super T</code>：向集合中添加元素（如 <code>addToList(List&lt;? super String&gt;, String)</code>）</li>
+<li>✅ <code>?</code>：传递集合，不关心具体类型（如 <code>processList(List&lt;?&gt;)</code>）</li>
+</ul>
+<p><strong>我的理解</strong>：<br>通配符是用来表示未知类型的，<code>?</code> 表示任意类型，<code>? extends T</code> 表示 T 或 T 的子类，<code>? super T</code> 表示 T 或 T 的父类。上界通配符适用于只读取的场景，因为我们不知道具体的子类类型，所以不能写入；下界通配符适用于只写入的场景，因为我们不知道具体的父类类型，所以不能读取。</p>
+<hr>
+<h3 id="4-类型擦除"><a href="#4-类型擦除" class="headerlink" title="4. 类型擦除"></a>4. 类型擦除</h3><p><strong>知识点</strong>：</p>
+<ul>
+<li><strong>类型擦除</strong>：编译时，泛型信息被擦除，生成与非泛型代码类似的字节码</li>
+<li><strong>影响</strong>：<ul>
+<li>运行时无法获取泛型类型信息</li>
+<li>编译器会在必要时自动插入类型转换代码</li>
+<li>可能导致类型安全问题（如使用反射绕过检查）</li>
+</ul>
+</li>
+</ul>
+<p><strong>记忆口诀</strong>：</p>
+<blockquote>
+<p><strong>泛型尖括号类型定，编译检查运行擦</strong><br><strong>运行时无泛型信息，类型转换隐式执行</strong></p>
+</blockquote>
+<p><strong>实际应用场景</strong>：</p>
+<ul>
+<li>✅ 了解类型擦除有助于理解泛型的内部实现</li>
+<li>✅ 避免在运行时尝试获取泛型类型信息</li>
+</ul>
+<p><strong>我的理解</strong>：<br>类型擦除是 Java 泛型的实现方式，它保证了与旧代码的兼容性。编译时，编译器会检查泛型类型是否正确，然后擦除泛型信息，生成与非泛型代码类似的字节码。运行时，JVM 看不到泛型信息，只看到原始类型。这就是为什么我们不能在运行时使用 <code>instanceof</code> 检查泛型类型，也不能创建泛型数组。</p>
+<hr>
+<h3 id="5-泛型的限制"><a href="#5-泛型的限制" class="headerlink" title="5. 泛型的限制"></a>5. 泛型的限制</h3><p><strong>知识点</strong>：</p>
+<ul>
+<li>✅ <strong>只能是引用类型</strong>：基本类型需要用包装类（如 <code>int</code> → <code>Integer</code>）</li>
+<li><strong>不能创建泛型数组</strong>：如 <code>new T[5]</code> 会编译错误</li>
+<li><strong>不能在静态上下文中使用泛型类型参数</strong>：静态字段和方法不能使用类的泛型参数</li>
+<li><strong>不能使用 <code>instanceof</code> 检查泛型类型</strong>：如 <code>if (obj instanceof List&lt;String&gt;)</code> 会编译错误</li>
+</ul>
+<p><strong>记忆口诀</strong>：</p>
+<blockquote>
+<p><strong>基本类型用包装，静态上下文中无</strong><br><strong>泛型数组不能建，instanceof 检查无</strong></p>
+</blockquote>
+<p><strong>实际应用场景</strong>：</p>
+<ul>
+<li>✅ 使用包装类处理基本类型（如 <code>List&lt;Integer&gt;</code> 而不是 <code>List&lt;int&gt;</code>）</li>
+<li>✅ 使用 <code>List&lt;T&gt;</code> 而不是泛型数组</li>
+</ul>
+<p><strong>我的理解</strong>：<br>泛型有一些限制，主要是由于类型擦除导致的。例如，泛型只能是引用类型，因为基本类型在运行时没有类型信息，无法进行类型擦除。泛型数组不能创建，因为数组是协变的，而泛型是不变的，可能会导致类型安全问题。静态上下文中不能使用泛型类型参数，因为静态成员属于类，而不是实例，而泛型类型参数是在实例化时才确定的。</p>
+<hr>
+<h3 id="6-泛型与继承的关系"><a href="#6-泛型与继承的关系" class="headerlink" title="6. 泛型与继承的关系"></a>6. 泛型与继承的关系</h3><p><strong>知识点</strong>：</p>
+<ul>
+<li><strong>泛型是不变的</strong>：<code>List&lt;String&gt;</code> <strong>不是</strong> <code>List&lt;Object&gt;</code> 的子类型</li>
+<li><strong>原因</strong>：类型擦除后，<code>List&lt;String&gt;</code> 和 <code>List&lt;Object&gt;</code> 都是 <code>List</code>，如果允许它们有继承关系，可能会导致类型安全问题</li>
+<li><strong>正确做法</strong>：使用通配符<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">List&lt;?&gt; objects = strings; <span class="comment">// 可以，无界通配符</span></span><br><span class="line">List&lt;? <span class="keyword">extends</span> <span class="title class_">Object</span>&gt; objects2 = strings; <span class="comment">// 可以，上界通配符</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>记忆口诀</strong>：</p>
+<blockquote>
+<p><strong>泛型不变要记牢，类型擦除是原因</strong><br><strong>需要转换用通配，安全又可靠</strong></p>
+</blockquote>
+<p><strong>实际应用场景</strong>：</p>
+<ul>
+<li>✅ 当需要处理不同类型的泛型集合时，使用通配符而不是类型转换</li>
+</ul>
+<p><strong>我的理解</strong>：<br>泛型是不变的，这意味着即使 <code>String</code> 是 <code>Object</code> 的子类，<code>List&lt;String&gt;</code> 也不是 <code>List&lt;Object&gt;</code> 的子类。这是因为类型擦除后，它们都是 <code>List</code> 类型，如果允许它们有继承关系，可能会导致类型安全问题。例如，如果我们可以将 <code>List&lt;String&gt;</code> 赋值给 <code>List&lt;Object&gt;</code>，然后向其中添加一个 <code>Integer</code>，那么在取出元素时就会出现类型转换错误。正确的做法是使用通配符，如 <code>List&lt;?&gt;</code> 或 <code>List&lt;? extends Object&gt;</code>。</p>
+<hr>
+<h3 id="7-泛型的桥接方法"><a href="#7-泛型的桥接方法" class="headerlink" title="7. 泛型的桥接方法"></a>7. 泛型的桥接方法</h3><p><strong>知识点</strong>：</p>
+<ul>
+<li><strong>桥接方法</strong>：编译器为解决泛型类型擦除导致的“重写失效”问题，自动生成的隐式方法</li>
+<li><strong>产生原因</strong>：泛型类型擦除后，子类的泛型重写方法签名与父类不匹配，编译器生成桥接方法补全多态逻辑</li>
+</ul>
+<p><strong>示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">(T t)</span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 子类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span>&lt;String&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">(String s)</span> &#123;&#125; <span class="comment">// 重写父类方法</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类型擦除后</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">(Object t)</span> &#123;&#125; <span class="comment">// T 被擦除为 Object</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">(String s)</span> &#123;&#125; <span class="comment">// 方法签名与父类不匹配</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 编译器自动生成桥接方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">(Object t)</span> &#123;</span><br><span class="line">        method((String) t); <span class="comment">// 调用子类的 method(String)</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>记忆口诀</strong>：</p>
+<blockquote>
+<p><strong>桥接方法编译器生，类型擦除重写保</strong><br><strong>多态逻辑补全后，运行时行为正确</strong></p>
+</blockquote>
+<p><strong>实际应用场景</strong>：</p>
+<ul>
+<li>✅ 桥接方法是编译器自动处理的，开发者无需关心</li>
+<li>✅ 了解桥接方法有助于理解泛型的内部实现</li>
+</ul>
+<p><strong>我的理解</strong>：<br>桥接方法是编译器为了解决泛型类型擦除导致的重写失效问题而自动生成的。当我们在子类中重写父类的泛型方法时，由于类型擦除，子类的方法签名与父类的方法签名不匹配，这样就会导致多态失效。编译器为了解决这个问题，会自动生成一个桥接方法，该方法的签名与父类的方法签名匹配，然后在桥接方法中调用子类的重写方法。这样，运行时的多态行为就可以正常工作了。</p>
+<hr>
+<h3 id="8-泛型的典型应用场景"><a href="#8-泛型的典型应用场景" class="headerlink" title="8. 泛型的典型应用场景"></a>8. 泛型的典型应用场景</h3><p><strong>知识点</strong>：</p>
+<ol>
+<li><p><strong>集合框架</strong>：</p>
+<ul>
+<li><code>List&lt;String&gt;</code>、<code>Map&lt;String, User&gt;</code>、<code>Set&lt;Integer&gt;</code> 等</li>
+<li>避免类型转换，提高类型安全</li>
+</ul>
+</li>
+<li><p><strong>工具类</strong>：</p>
+<ul>
+<li><code>Collections.sort(List&lt;T&gt;)</code>：排序任意类型的列表</li>
+<li><code>Arrays.asList(T...)</code>：将数组转换为列表</li>
+<li><code>Optional&lt;T&gt;</code>：处理可能为 null 的值</li>
+</ul>
+</li>
+<li><p><strong>统一响应体&#x2F;结果封装</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Response</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> code;</span><br><span class="line">    <span class="keyword">private</span> String message;</span><br><span class="line">    <span class="keyword">private</span> T data; <span class="comment">// 泛型数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>函数式接口</strong>：</p>
+<ul>
+<li><code>Function&lt;T, R&gt;</code>：转换类型</li>
+<li><code>Predicate&lt;T&gt;</code>：判断条件</li>
+<li><code>Consumer&lt;T&gt;</code>：消费数据</li>
+</ul>
+</li>
+<li><p><strong>数据访问层</strong>：</p>
+<ul>
+<li><code>Dao&lt;T&gt;</code>：通用数据访问接口，如 <code>UserDao extends Dao&lt;User&gt;</code></li>
+</ul>
+</li>
+</ol>
+<p><strong>记忆口诀</strong>：</p>
+<blockquote>
+<p><strong>集合工具响应体，函数接口数据层</strong><br><strong>泛型应用无处不在，类型安全又简洁</strong></p>
+</blockquote>
+<p><strong>实际应用场景</strong>：</p>
+<ul>
+<li>✅ 几乎所有现代 Java 代码都在使用泛型</li>
+<li>✅ 提高代码的可读性、可维护性和类型安全性</li>
+</ul>
+<p><strong>我的理解</strong>：<br>泛型在 Java 中的应用非常广泛，几乎所有现代 Java 代码都在使用泛型。它可以帮助我们编写更简洁、更安全、更可复用的代码。例如，在集合框架中，我们可以使用 <code>List&lt;String&gt;</code> 来表示一个字符串列表，这样编译器就会检查我们添加的元素是否都是字符串类型，避免了运行时的类型转换错误。在工具类中，我们可以使用泛型方法来处理任意类型的数据，提高代码的复用性。在统一响应体中，我们可以使用泛型来封装不同类型的响应数据，使代码更简洁。</p>
+<hr>
+<h2 id="二、今日记忆口诀汇总"><a href="#二、今日记忆口诀汇总" class="headerlink" title="二、今日记忆口诀汇总"></a>二、今日记忆口诀汇总</h2><ol>
+<li><p><strong>泛型的概念和作用</strong>：</p>
+<blockquote>
+<p><strong>泛型就是尖括号，类型参数往里填</strong><br><strong>编译时检查类型，运行时无转换</strong></p>
+</blockquote>
+</li>
+<li><p><strong>泛型的语法格式</strong>：</p>
+<blockquote>
+<p><strong>泛型类尖括号在名后，泛型方法尖括号在前</strong><br><strong>钻石操作符省代码，左侧类型自动推断</strong></p>
+</blockquote>
+</li>
+<li><p><strong>泛型的通配符</strong>：</p>
+<blockquote>
+<p><strong>上界 extends 只读，下界 super 只写</strong><br><strong>无界通配符 ?，任意类型都可以</strong></p>
+</blockquote>
+</li>
+<li><p><strong>类型擦除</strong>：</p>
+<blockquote>
+<p><strong>泛型尖括号类型定，编译检查运行擦</strong><br><strong>运行时无泛型信息，类型转换隐式执行</strong></p>
+</blockquote>
+</li>
+<li><p><strong>泛型的限制</strong>：</p>
+<blockquote>
+<p><strong>基本类型用包装，静态上下文中无</strong><br><strong>泛型数组不能建，instanceof 检查无</strong></p>
+</blockquote>
+</li>
+<li><p><strong>泛型与继承的关系</strong>：</p>
+<blockquote>
+<p><strong>泛型不变要记牢，类型擦除是原因</strong><br><strong>需要转换用通配，安全又可靠</strong></p>
+</blockquote>
+</li>
+<li><p><strong>泛型的桥接方法</strong>：</p>
+<blockquote>
+<p><strong>桥接方法编译器生，类型擦除重写保</strong><br><strong>多态逻辑补全后，运行时行为正确</strong></p>
+</blockquote>
+</li>
+<li><p><strong>泛型的典型应用场景</strong>：</p>
+<blockquote>
+<p><strong>集合工具响应体，函数接口数据层</strong><br><strong>泛型应用无处不在，类型安全又简洁</strong></p>
+</blockquote>
+</li>
+</ol>
+<hr>
+<h2 id="三、学习时长统计"><a href="#三、学习时长统计" class="headerlink" title="三、学习时长统计"></a>三、学习时长统计</h2><ul>
+<li><strong>开始时间</strong>：2026-02-24</li>
+<li><strong>结束时间</strong>：2026-02-24</li>
+<li><strong>总时长</strong>：约 25 分钟</li>
+</ul>
+<hr>
+<h2 id="四、明日学习计划"><a href="#四、明日学习计划" class="headerlink" title="四、明日学习计划"></a>四、明日学习计划</h2><h3 id="建议复习内容"><a href="#建议复习内容" class="headerlink" title="建议复习内容"></a>建议复习内容</h3><ol>
+<li>复习今日学习的泛型知识点，重点记忆口诀</li>
+<li>练习编写泛型代码，加深理解</li>
+<li>重点复习泛型的通配符和类型擦除</li>
+</ol>
+<h3 id="建议学习内容"><a href="#建议学习内容" class="headerlink" title="建议学习内容"></a>建议学习内容</h3><ol>
+<li><strong>Java 反射机制</strong>：了解如何在运行时获取和操作类的信息</li>
+<li><strong>Java 注解</strong>：了解注解的定义、使用和处理</li>
+<li><strong>Java 8 特性</strong>：Lambda 表达式、Stream API、Optional 类</li>
+<li><strong>Java 异常处理</strong>：异常的分类、处理方式、自定义异常</li>
+</ol>
+<h3 id="需要补充的知识点"><a href="#需要补充的知识点" class="headerlink" title="需要补充的知识点"></a>需要补充的知识点</h3><ol>
+<li><strong>泛型的高级特性</strong>：泛型擦除后的类型转换、泛型与反射的结合使用</li>
+<li><strong>类型通配符的嵌套使用</strong>：如 <code>List&lt;? extends List&lt;?&gt;&gt;</code></li>
+<li><strong>泛型的类型推断</strong>：Java 8+ 中的类型推断增强</li>
+<li><strong>泛型与可变参数的结合</strong>：如 <code>public static &lt;T&gt; void print(T... args)</code></li>
+</ol>
+<hr>
+<h2 id="五、学习心得"><a href="#五、学习心得" class="headerlink" title="五、学习心得"></a>五、学习心得</h2><p>通过今天的学习，我对 Java 泛型有了更深入的理解。以前只知道泛型可以用来避免类型转换，现在明白了它的底层实现原理（类型擦除）和各种使用场景。特别是泛型的通配符、类型擦除、泛型的限制等知识点，让我对泛型的使用有了更清晰的认识。</p>
+<p>费曼学习法的问答方式让我能够主动思考，而不是被动接受知识。虽然有些问题一开始回答不够完整，但通过老师的详细讲解和补充，我能够更好地理解和记忆这些知识点。记忆口诀的总结也让我能够快速回顾和巩固所学内容。</p>
+<p>泛型是 Java 中非常重要的特性，它可以帮助我们编写更简洁、更安全、更可复用的代码。在实际开发中，几乎所有现代 Java 代码都在使用泛型，所以掌握好泛型对于提高代码质量和开发效率非常重要。</p>
+<p>明天计划学习 Java 反射机制，继续深入理解 Java 的核心特性。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/02/24/Java%E6%B3%9B%E5%9E%8B-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="cuidkg8VGvcrA40etI8KWDOHP" data-title="Java 泛型 - 学习总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/02/25/HashSet%E3%80%81LinkedHashSet%E3%80%81TreeSet-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HashSet、LinkedHashSet、TreeSet - 学习总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/02/13/Java%E4%B8%ADArrays-20260213212034/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java Arrays API - 学习总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Map%E5%AE%B6%E6%97%8F-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Map家族学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Stream%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Stream流学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java 方法引用学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/30/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Java网络编程</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/25/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Java线程池工作原理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

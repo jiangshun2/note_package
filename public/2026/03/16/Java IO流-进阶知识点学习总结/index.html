@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Java IO流-进阶知识点学习总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Java IO流-进阶知识点学习总结日期：2026-03-16 一、今日学习内容汇总1. 转换流定义：转换流是字节流和字符流之间的桥梁，用于在两者之间进行转换。 实现类：  InputStreamReader：将字节流转换为字符流（字节→字符） OutputStreamWriter：将字符流转换为字节流（字符→字节）  工作原理：  InputStreamReader：从底层字节流读取字节，根据指">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java IO流-进阶知识点学习总结">
+<meta property="og:url" content="http://example.com/2026/03/16/Java%20IO%E6%B5%81-%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86%E7%82%B9%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java IO流-进阶知识点学习总结日期：2026-03-16 一、今日学习内容汇总1. 转换流定义：转换流是字节流和字符流之间的桥梁，用于在两者之间进行转换。 实现类：  InputStreamReader：将字节流转换为字符流（字节→字符） OutputStreamWriter：将字符流转换为字节流（字符→字节）  工作原理：  InputStreamReader：从底层字节流读取字节，根据指">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-15T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-08T09:57:56.685Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="基础">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Java IO流-进阶知识点学习总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/16/Java%20IO%E6%B5%81-%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86%E7%82%B9%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2026-03-15T16:00:00.000Z" itemprop="datePublished">2026-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Java IO流-进阶知识点学习总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java-IO流-进阶知识点学习总结"><a href="#Java-IO流-进阶知识点学习总结" class="headerlink" title="Java IO流-进阶知识点学习总结"></a>Java IO流-进阶知识点学习总结</h1><p><strong>日期：2026-03-16</strong></p>
+<h2 id="一、今日学习内容汇总"><a href="#一、今日学习内容汇总" class="headerlink" title="一、今日学习内容汇总"></a>一、今日学习内容汇总</h2><h3 id="1-转换流"><a href="#1-转换流" class="headerlink" title="1. 转换流"></a>1. 转换流</h3><p><strong>定义</strong>：转换流是字节流和字符流之间的桥梁，用于在两者之间进行转换。</p>
+<p><strong>实现类</strong>：</p>
+<ul>
+<li><code>InputStreamReader</code>：将字节流转换为字符流（字节→字符）</li>
+<li><code>OutputStreamWriter</code>：将字符流转换为字节流（字符→字节）</li>
+</ul>
+<p><strong>工作原理</strong>：</p>
+<ul>
+<li><code>InputStreamReader</code>：从底层字节流读取字节，根据指定字符集转换为字符</li>
+<li><code>OutputStreamWriter</code>：接收字符，根据指定字符集转换为字节，写入底层字节流</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>指定字符集读取&#x2F;写入文件，避免乱码</li>
+<li>网络编程中的字符转换</li>
+<li>处理不同字符编码的文本文件</li>
+</ul>
+<p><strong>代码示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用转换流指定字符集读取文件</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    <span class="type">InputStreamReader</span> <span class="variable">isr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;utf8.txt&quot;</span>),</span><br><span class="line">        StandardCharsets.UTF_8</span><br><span class="line">    );</span><br><span class="line">    <span class="type">BufferedReader</span> <span class="variable">br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(isr)</span><br><span class="line">) &#123;</span><br><span class="line">    String line;</span><br><span class="line">    <span class="keyword">while</span> ((line = br.readLine()) != <span class="literal">null</span>) &#123;</span><br><span class="line">        System.out.println(line);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-序列化和反序列化"><a href="#2-序列化和反序列化" class="headerlink" title="2. 序列化和反序列化"></a>2. 序列化和反序列化</h3><p><strong>定义</strong>：</p>
+<ul>
+<li><strong>序列化</strong>：将内存中的对象转换为字节序列的过程</li>
+<li><strong>反序列化</strong>：将字节序列转换回内存中的对象的过程</li>
+</ul>
+<p><strong>实现方式</strong>：</p>
+<ul>
+<li>实现 <code>Serializable</code> 接口（标记接口）</li>
+<li>使用 <code>ObjectOutputStream</code> 进行序列化（<code>writeObject()</code>）</li>
+<li>使用 <code>ObjectInputStream</code> 进行反序列化（<code>readObject()</code>）</li>
+</ul>
+<p><strong>特点</strong>：</p>
+<ul>
+<li><code>transient</code> 修饰的字段不会被序列化</li>
+<li>建议显式声明 <code>serialVersionUID</code> 确保版本兼容性</li>
+<li>静态字段不会被序列化</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>对象持久化（保存到文件、数据库）</li>
+<li>网络传输（RMI、分布式系统）</li>
+<li>缓存（减少内存使用）</li>
+</ul>
+<p><strong>代码示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 序列化对象</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;object.ser&quot;</span>);</span><br><span class="line">    <span class="type">ObjectOutputStream</span> <span class="variable">oos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(fos)</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;张三&quot;</span>, <span class="number">25</span>);</span><br><span class="line">    oos.writeObject(user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 反序列化对象</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;object.ser&quot;</span>);</span><br><span class="line">    <span class="type">ObjectInputStream</span> <span class="variable">ois</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(fis)</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> (User) ois.readObject();</span><br><span class="line">    System.out.println(user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-打印流"><a href="#3-打印流" class="headerlink" title="3. 打印流"></a>3. 打印流</h3><p><strong>定义</strong>：提供便捷的打印方法，用于输出各种类型的数据。</p>
+<p><strong>实现类</strong>：</p>
+<ul>
+<li><code>PrintStream</code>：字节打印流，默认使用系统编码</li>
+<li><code>PrintWriter</code>：字符打印流，可以指定字符集</li>
+</ul>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>自动刷新（调用 println()、printf() 或 format() 时）</li>
+<li>不会抛出 IOException，而是设置内部错误状态</li>
+<li>支持多种数据类型输出（boolean、char、int、long、float、double、String、Object）</li>
+<li>便捷方法：print()、println()、printf()、format()</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>控制台输出（System.out、System.err）</li>
+<li>文件日志（写入日志文件）</li>
+<li>网络通信（向网络连接写入数据）</li>
+</ul>
+<p><strong>代码示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用PrintWriter写入文件（指定字符集）</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    <span class="type">PrintWriter</span> <span class="variable">pw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">PrintWriter</span>(</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">OutputStreamWriter</span>(</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;output.txt&quot;</span>),</span><br><span class="line">            StandardCharsets.UTF_8</span><br><span class="line">        ),</span><br><span class="line">        <span class="literal">true</span>  <span class="comment">// 自动刷新</span></span><br><span class="line">    )</span><br><span class="line">) &#123;</span><br><span class="line">    pw.println(<span class="string">&quot;你好，Java！&quot;</span>);</span><br><span class="line">    pw.printf(<span class="string">&quot;数字：%d，浮点数：%.2f%n&quot;</span>, <span class="number">123</span>, <span class="number">3.14</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-压缩和解压缩流"><a href="#4-压缩和解压缩流" class="headerlink" title="4. 压缩和解压缩流"></a>4. 压缩和解压缩流</h3><p><strong>定义</strong>：</p>
+<ul>
+<li><strong>压缩流</strong>：用于将数据压缩成更小的体积</li>
+<li><strong>解压缩流</strong>：用于将压缩的数据还原为原始数据</li>
+</ul>
+<p><strong>实现类</strong>：</p>
+<ul>
+<li><strong>Zip相关</strong>：ZipOutputStream（压缩）、ZipInputStream（解压缩）、ZipEntry（条目）</li>
+<li><strong>GZIP相关</strong>：GZIPOutputStream（压缩）、GZIPInputStream（解压缩）</li>
+<li><strong>其他</strong>：DeflaterOutputStream、InflaterInputStream</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>文件压缩（减小文件大小，节省存储空间）</li>
+<li>备份和归档（将多个文件打包成一个压缩文件）</li>
+<li>网络传输（减少带宽使用，提高传输速度）</li>
+</ul>
+<p><strong>代码示例</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 压缩文件为ZIP</span></span><br><span class="line"><span class="keyword">try</span> (</span><br><span class="line">    <span class="type">FileOutputStream</span> <span class="variable">fos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;output.zip&quot;</span>);</span><br><span class="line">    <span class="type">ZipOutputStream</span> <span class="variable">zos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipOutputStream</span>(fos)</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="type">ZipEntry</span> <span class="variable">entry</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ZipEntry</span>(<span class="string">&quot;source.txt&quot;</span>);</span><br><span class="line">    zos.putNextEntry(entry);</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">try</span> (<span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;source.txt&quot;</span>)) &#123;</span><br><span class="line">        <span class="type">byte</span>[] buffer = <span class="keyword">new</span> <span class="title class_">byte</span>[<span class="number">1024</span>];</span><br><span class="line">        <span class="type">int</span> bytesRead;</span><br><span class="line">        <span class="keyword">while</span> ((bytesRead = fis.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">            zos.write(buffer, <span class="number">0</span>, bytesRead);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    zos.closeEntry();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、今日记忆口诀汇总"><a href="#二、今日记忆口诀汇总" class="headerlink" title="二、今日记忆口诀汇总"></a>二、今日记忆口诀汇总</h2><h3 id="1-转换流-1"><a href="#1-转换流-1" class="headerlink" title="1. 转换流"></a>1. 转换流</h3><blockquote>
+<p>转换流是桥，字节字符互转好；<br>InputStreamReader字节到字符，OutputStreamWriter字符到字节；<br>指定字符集防乱码，网络文件都需要！</p>
+</blockquote>
+<h3 id="2-序列化"><a href="#2-序列化" class="headerlink" title="2. 序列化"></a>2. 序列化</h3><blockquote>
+<p>序列化对象转字节，反序列化字节转对象；<br>实现Serializable接口，Object流来操作；<br>writeObject序列化，readObject反序列化；<br>transient字段不序列化，serialVersionUID要声明！</p>
+</blockquote>
+<h3 id="3-打印流-1"><a href="#3-打印流-1" class="headerlink" title="3. 打印流"></a>3. 打印流</h3><blockquote>
+<p>打印流只输出，PrintStream和PrintWriter；<br>自动刷新不用抛异常，多类型输出很方便；<br>System.out是实例，日志文件和控制台！</p>
+</blockquote>
+<h3 id="4-压缩流"><a href="#4-压缩流" class="headerlink" title="4. 压缩流"></a>4. 压缩流</h3><blockquote>
+<p>压缩流减小文件，解压缩还原数据；<br>ZipOutputStream压缩，ZipInputStream解压；<br>ZipEntry条目要创建，putNextEntry别忘记；<br>多文件打包成ZIP，GZIP格式也常用！</p>
+</blockquote>
+<h2 id="三、学习时长统计"><a href="#三、学习时长统计" class="headerlink" title="三、学习时长统计"></a>三、学习时长统计</h2><p>本次学习时长：约2.5小时</p>
+<h2 id="四、明日学习计划"><a href="#四、明日学习计划" class="headerlink" title="四、明日学习计划"></a>四、明日学习计划</h2><h3 id="复习任务"><a href="#复习任务" class="headerlink" title="复习任务"></a>复习任务</h3><ol>
+<li><p><strong>复习转换流</strong></p>
+<ul>
+<li>重读今日学习内容，重点掌握转换流的使用场景和代码示例</li>
+<li>尝试口头复述转换流的记忆口诀</li>
+</ul>
+</li>
+<li><p><strong>复习序列化和反序列化</strong></p>
+<ul>
+<li>重点掌握Serializable接口、transient关键字和serialVersionUID的作用</li>
+<li>尝试口头复述序列化的记忆口诀</li>
+</ul>
+</li>
+<li><p><strong>复习打印流</strong></p>
+<ul>
+<li>重点掌握PrintStream和PrintWriter的区别和使用方法</li>
+<li>尝试口头复述打印流的记忆口诀</li>
+</ul>
+</li>
+<li><p><strong>复习压缩和解压缩流</strong></p>
+<ul>
+<li>重点掌握ZipOutputStream和ZipInputStream的使用步骤</li>
+<li>尝试口头复述压缩流的记忆口诀</li>
+</ul>
+</li>
+</ol>
+<h3 id="新学任务"><a href="#新学任务" class="headerlink" title="新学任务"></a>新学任务</h3><ol>
+<li><p><strong>学习Java NIO（非阻塞IO）</strong></p>
+<ul>
+<li>学习NIO的核心概念：Channel、Buffer、Selector</li>
+<li>学习NIO的文件操作：FileChannel、ByteBuffer</li>
+<li>理解NIO与传统IO的区别和优势</li>
+</ul>
+</li>
+<li><p><strong>探索网络编程基础</strong></p>
+<ul>
+<li>学习Socket和ServerSocket的基本使用</li>
+<li>学习TCP协议的网络编程</li>
+<li>理解网络编程中的IO流应用</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、学习心得"><a href="#五、学习心得" class="headerlink" title="五、学习心得"></a>五、学习心得</h2><p>通过费曼学习法的问答模式，我对Java IO流的进阶知识点有了更深入的理解。特别是在转换流、序列化和反序列化、打印流、压缩和解压缩流方面，通过具体代码示例，我对这些知识点的掌握更加牢固。</p>
+<p>转换流是字节流和字符流之间的桥梁，它解决了字符编码问题，确保了文本数据的正确处理。序列化和反序列化是对象持久化和网络传输的基础，理解它们的实现原理和注意事项，能够帮助我在实际开发中正确处理对象的存储和传输。</p>
+<p>打印流提供了便捷的输出方法，它简化了输出操作，提高了代码的可读性。压缩和解压缩流用于减小文件大小，节省存储空间和传输时间，是文件操作和网络传输中的重要工具。</p>
+<p>这种”问-答-纠错-深化”的学习方法非常有效，能够暴露自己的认知盲区，通过纠正错误来加深理解。我将继续使用这种方法来学习其他Java IO相关的知识点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/16/Java%20IO%E6%B5%81-%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86%E7%82%B9%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="cuidHZE-2OGfTOdOadlTGm47R" data-title="Java IO流-进阶知识点学习总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/03/23/Java%20Thread%E7%B1%BB-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java Thread类-学习总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/03/13/Java%20IO%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java IO流学习总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Map%E5%AE%B6%E6%97%8F-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Map家族学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Stream%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Stream流学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java 方法引用学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/30/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Java网络编程</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/25/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Java线程池工作原理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

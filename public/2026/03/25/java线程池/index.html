@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Java线程池工作原理 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Java学习知识库2026-03-25 Java线程池工作原理知识点线程池的工作原理，包括线程池的组成、任务执行流程、线程池状态 核心洞察 线程池的组成：  核心线程数（corePoolSize）：线程池长期保持的线程数量，即使空闲也不回收（除非设置allowCoreThreadTimeOut）。 最大线程数（maximumPoolSize）：线程池允许的最大线程数，核心线程忙且队列满时创建新线程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java线程池工作原理">
+<meta property="og:url" content="http://example.com/2026/03/25/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Java学习知识库2026-03-25 Java线程池工作原理知识点线程池的工作原理，包括线程池的组成、任务执行流程、线程池状态 核心洞察 线程池的组成：  核心线程数（corePoolSize）：线程池长期保持的线程数量，即使空闲也不回收（除非设置allowCoreThreadTimeOut）。 最大线程数（maximumPoolSize）：线程池允许的最大线程数，核心线程忙且队列满时创建新线程">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-04-08T09:58:12.885Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="基础">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-java线程池" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/03/25/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="article-date">
+  <time class="dt-published" datetime="2026-03-24T16:00:00.000Z" itemprop="datePublished">2026-03-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Java线程池工作原理
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Java学习知识库"><a href="#Java学习知识库" class="headerlink" title="Java学习知识库"></a>Java学习知识库</h1><h2 id="2026-03-25-Java线程池工作原理"><a href="#2026-03-25-Java线程池工作原理" class="headerlink" title="2026-03-25 Java线程池工作原理"></a>2026-03-25 Java线程池工作原理</h2><h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><p>线程池的工作原理，包括线程池的组成、任务执行流程、线程池状态</p>
+<h3 id="核心洞察"><a href="#核心洞察" class="headerlink" title="核心洞察"></a>核心洞察</h3><ol>
+<li><p><strong>线程池的组成</strong>：</p>
+<ul>
+<li>核心线程数（corePoolSize）：线程池长期保持的线程数量，即使空闲也不回收（除非设置allowCoreThreadTimeOut）。</li>
+<li>最大线程数（maximumPoolSize）：线程池允许的最大线程数，核心线程忙且队列满时创建新线程直到此上限。</li>
+<li>工作队列（workQueue）：存储等待执行的任务，类型有ArrayBlockingQueue、LinkedBlockingQueue、SynchronousQueue等。</li>
+<li>拒绝策略（RejectedExecutionHandler）：队列满且线程数达上限时的处理策略，如AbortPolicy、CallerRunsPolicy等。</li>
+<li>其他组件：线程工厂（ThreadFactory）、keepAliveTime（非核心线程空闲存活时间）等。</li>
+</ul>
+</li>
+<li><p><strong>任务执行流程</strong>：</p>
+<ul>
+<li>提交任务时，先检查核心线程数：未达上限则创建核心线程执行任务。</li>
+<li>核心线程满则检查队列：队列未满则入队等待。</li>
+<li>队列满则检查最大线程数：未达上限则创建非核心线程执行任务。</li>
+<li>最大线程数满则触发拒绝策略。</li>
+<li>线程执行完任务后继续从队列获取任务，实现线程复用。</li>
+<li>任务执行异常时，线程会被终止并创建新线程替代。</li>
+</ul>
+</li>
+<li><p><strong>线程池状态</strong>：</p>
+<ul>
+<li>RUNNING：运行状态，接收新任务并处理队列任务。</li>
+<li>STOP：停止状态，不接收新任务，中断正在执行的任务，清空队列。</li>
+<li>TIDYING：整理状态，所有任务执行完毕，所有线程终止，执行terminated()方法。</li>
+<li>TERMINATED：终止状态，terminated()方法执行完毕，线程池完全终止。</li>
+</ul>
+</li>
+</ol>
+<h3 id="记忆口诀"><a href="#记忆口诀" class="headerlink" title="记忆口诀"></a>记忆口诀</h3><p>线程池，四状态，RUNNING最繁忙，<br>STOP中断清队列，TIDYING整理忙，<br>TERMINATED终收场。<br>核心线程长期在，最大线程应急忙，<br>队列满时拒绝上，线程复用效率强。</p>
+<h3 id="实战锦囊"><a href="#实战锦囊" class="headerlink" title="实战锦囊"></a>实战锦囊</h3><ol>
+<li><strong>核心线程数配置</strong>：通常设置为CPU核心数或CPU核心数+1，充分利用CPU资源。</li>
+<li><strong>最大线程数配置</strong>：通常设置为核心线程数的2-4倍，应对突发流量。</li>
+<li><strong>工作队列选择</strong>：互联网应用用LinkedBlockingQueue，金融场景用ArrayBlockingQueue。</li>
+<li><strong>拒绝策略选择</strong>：秒杀场景用AbortPolicy配合熔断，后台任务用DiscardOldestPolicy。</li>
+<li><strong>监控与优化</strong>：监控活跃线程数、队列长度、任务执行时间，根据实际负载调整参数。</li>
+<li><strong>异常处理</strong>：任务中添加try-catch块，避免线程意外终止。</li>
+<li><strong>优雅停机</strong>：使用shutdown()方法，等待任务执行完毕后再停止线程池。</li>
+</ol>
+<h3 id="源码-扩展阅读链接"><a href="#源码-扩展阅读链接" class="headerlink" title="源码&#x2F;扩展阅读链接"></a>源码&#x2F;扩展阅读链接</h3><ul>
+<li>ThreadPoolExecutor源码：<a target="_blank" rel="noopener" href="https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/concurrent/ThreadPoolExecutor.java">https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/concurrent/ThreadPoolExecutor.java</a></li>
+<li>Java并发编程实战（书籍）</li>
+<li>Java线程池原理与实践：<a target="_blank" rel="noopener" href="https://www.baeldung.com/java-thread-pool">https://www.baeldung.com/java-thread-pool</a></li>
+</ul>
+<h3 id="用户回答整理"><a href="#用户回答整理" class="headerlink" title="用户回答整理"></a>用户回答整理</h3><ol>
+<li><p><strong>线程池的组成</strong>：</p>
+<ul>
+<li>核心线程与最大线程：核心线程数是线程池长期保持的线程数量，最大线程数是线程池允许的最大线程数。</li>
+<li>工作队列：用于存储等待执行的任务。</li>
+<li>拒绝策略：当线程池达到最大线程数且工作队列已满时，对新提交任务的处理策略。</li>
+<li>其他组件：线程工厂、keepAliveTime等。</li>
+</ul>
+</li>
+<li><p><strong>任务执行流程</strong>：</p>
+<ul>
+<li>任务提交时的处理：检查核心线程数、队列、最大线程数，决定创建线程还是入队。</li>
+<li>线程执行任务的过程：线程从队列获取任务执行，执行完毕后继续获取下一个任务，实现线程复用。</li>
+<li>队列满时的处理：触发拒绝策略。</li>
+<li>任务执行异常的处理：线程被终止并创建新线程替代。</li>
+</ul>
+</li>
+<li><p><strong>线程池状态</strong>：</p>
+<ul>
+<li>RUNNING：运行状态，接收新任务并处理队列任务。</li>
+<li>STOP：停止状态，不接收新任务，中断正在执行的任务。</li>
+<li>TIDYING：整理状态，所有任务执行完毕，所有线程终止。</li>
+<li>TERMINATED：终止状态，线程池完全终止。</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/03/25/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/" data-id="cuidzt9uvPU_cJbF9S-ziasza" data-title="Java线程池工作原理" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/03/30/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java网络编程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/03/23/Java%20Thread%E7%B1%BB-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java Thread类-学习总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%BA%E7%A1%80/" rel="tag">基础</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/%E5%9F%BA%E7%A1%80/" style="font-size: 10px;">基础</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/04/">April 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Map%E5%AE%B6%E6%97%8F-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Map家族学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20Stream%E6%B5%81-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java Stream流学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/04/08/Java%20%E6%96%B9%E6%B3%95%E5%BC%95%E7%94%A8-%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">Java 方法引用学习总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/30/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">Java网络编程</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/25/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Java线程池工作原理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
