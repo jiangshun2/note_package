@@ -10,7 +10,7 @@ menu:
 
 # 头像配置
 avatar:
-  img:https://s41.ax1x.com/2026/04/08/pea1T5n.jpg
+  img: https://s41.ax1x.com/2026/04/08/pea1T5n.jpg
   # effect: true # 是否开启头像旋转特效
 
 # 顶部背景图
@@ -20,3 +20,44 @@ avatar:
 index_img: https://s41.ax1x.com/2026/04/08/pea8UmD.png
 # 文章页顶部图片 (Article Images)
 post_img: https://s41.ax1x.com/2026/04/08/pea84ts.png
+
+# 自定义注入 (Inject)
+# ---------------------------------------------------------------
+# 用于添加自定义 CSS 或 JS
+inject:
+  head:
+    - <style>
+        /* --- 导航栏美化：现代极简风格 --- */
+        /* 1. 导航栏整体：毛玻璃特效 + 悬浮阴影 */
+        #page-header.nav-fixed #nav {
+            background: rgba(255, 255, 255, 0.85) !important; /* 白色半透明背景 */
+            backdrop-filter: blur(12px); /* 毛玻璃模糊效果 */
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* 柔和阴影 */
+            transition: all 0.3s ease; /* 平滑过渡 */
+        }
+
+        /* 2. 菜单链接：调整字体与间距 */
+        #nav .site-page {
+            font-weight: 600; /* 字体加粗 */
+            letter-spacing: 0.5px; /* 字间距 */
+            color: #4c4c4c !important; /* 默认深灰色 */
+            padding: 0 12px !important; /* 内边距 */
+            border-radius: 8px; /* 圆角 */
+            transition: all 0.3s ease; /* 动画效果 */
+        }
+
+        /* 3. 鼠标悬停：高亮与放大 */
+        #nav .site-page:hover {
+            color: #49b1f5 !important; /* 悬停变为蓝色（可自定义） */
+            background: rgba(73, 177, 245, 0.1); /* 淡蓝色背景 */
+            transform: scale(1.05); /* 轻微放大 */
+        }
+
+        /* 4. 站点标题优化 */
+        #nav .site-title {
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+        /* --- 样式结束 --- */
+      </style>
