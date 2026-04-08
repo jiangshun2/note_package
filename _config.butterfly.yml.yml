@@ -1,0 +1,22 @@
+# Header
+# ---------------------------------------------------------------
+menu:
+  # 格式：菜单名: 页面路径 || 图标类名 (Font Awesome 图标名)
+  首页: / || fa-solid fa-home
+  归档: /archives/ || fa-solid fa-archive
+  标签: /tags/ || fa-solid fa-tags
+  分类: /categories/ || fa-solid fa-folder-open
+  # 关于: /about/ || fa-solid fa-heart
+
+# 头像配置
+avatar:
+  img: # 你的头像链接，留空则不显示
+  # effect: true # 是否开启头像旋转特效
+
+# 顶部背景图
+# ---------------------------------------------------------------
+# 主页顶部图片 (Header Images)
+# 如果不设置图片，顶部将显示纯色背景
+index_img: # 例如: https://example.com/header-bg.jpg
+# 文章页顶部图片 (Article Images)
+post_img: # 例如: https://example.com/post-bg.jpg
