@@ -10,7 +10,7 @@ menu:
 
 # 头像配置
 avatar:
-  img: # 你的头像链接，留空则不显示
+  img: https://imgchr.com/i/pea1T5n
   # effect: true # 是否开启头像旋转特效
 
 # 顶部背景图
