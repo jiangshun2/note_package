@@ -10,13 +10,13 @@ menu:
 
 # 头像配置
 avatar:
-  img: https://imgchr.com/i/pea1T5n
+  img:https://s41.ax1x.com/2026/04/08/pea1T5n.jpg
   # effect: true # 是否开启头像旋转特效
 
 # 顶部背景图
 # ---------------------------------------------------------------
 # 主页顶部图片 (Header Images)
 # 如果不设置图片，顶部将显示纯色背景
-index_img: # 例如: https://example.com/header-bg.jpg
+index_img: https://s41.ax1x.com/2026/04/08/pea8UmD.png
 # 文章页顶部图片 (Article Images)
-post_img: # 例如: https://example.com/post-bg.jpg
+post_img: https://s41.ax1x.com/2026/04/08/pea84ts.png
